@@ -1,0 +1,186 @@
+{% include 'breadcrumb', url: "home/cart" %}
+
+<div id="cart">
+  <div class="container">
+    <h5 class="section-heading">購物車</h5>
+    {% if cart.items.size > 0 %}
+      {% if notice %}
+        <div class="alert alert-danger" role="alert">{{ notice }}</div>
+      {% endif %}
+      <form id="cart_form" class="carts" action="/cart" method="post">
+        <ul>
+          <li class="item item-title">
+            <div class="product_info">
+              商品明細
+            </div>
+            <div class="unit_price">
+              單價
+            </div>
+            <div class="quantity text-center">
+              數量
+            </div>
+            <div class="total_price text-center">
+              小計
+            </div>
+            <div class="cancel_product text-center">
+              取消
+            </div>
+          </li>
+          {% for item in cart.items %}
+            {% if item.type == 'normal' or item.type == 'add-buy' %}
+            <!-- 一般商品 &加價購 -->
+            <li class="item cart-item">
+              <div class="product_info d-flex align-items-center">
+                <div class="product_image img-flex">
+                  {% if settings.display_product_images_color %}
+                    <img class="img-lazy" src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ item.image | product_img_url: 'thumb' }}" alt="{{ item.product.title }}">
+                  {% else %}
+                    <img class="img-lazy" src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ item.product.featured_image | product_img_url: 'thumb' }}" alt="{{ item.product.title }}">
+                  {% endif %}
+                </div>
+                <div class="product_name">
+                  <a href="{{ item.product.url }}" class="title">{{ item.title }}</a><br>
+                  {% if item.type == 'add-buy' %}
+                    <strong class="text-danger">加購商品</strong>
+                  {% elsif item.type == 'normal' %}
+                    {% if item.product.promotion_text %}
+                      <a href="{{ item.product.special_collection.url }}">
+                        <strong>此商品有活動：{{item.product.promotion_text}}</strong>
+                      </a>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="unit_price d-flex align-items-center">
+                <span>{{ item.price | money }}</span>
+              </div>
+              <div class="quantity d-flex justify-content-center align-items-center">
+                <select class="select-quantity form-control" name="updates[]">
+                  <option value="{{ item.quantity }}" selected>{{ item.quantity }}</option>
+                  {% for limit_index in (1..settings.cart_quantity_limit) %}
+                    <option value="{{ limit_index }}">{{ limit_index }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="total_price d-flex justify-content-center align-items-center">
+                <span>{{ item.price | times: item.quantity | money }}</span>
+              </div>
+              <div class="cancel_product d-flex justify-content-center align-items-center">
+                <a id="removeFromCart" class="removeFromCart text-danger" href="/cart/change/{{ item.cart_item_id }}?quantity=0" title="remove"
+                  data-brand="{{ item.product.vendor | escape }}"
+                  data-category="{{ item.product.product_type | escape }}"
+                  data-id="{{ item.product.id | escape }}"
+                  data-name="{{ item.product.title | escape }}"
+                  data-price="{{ item.price }}"
+                  data-quantity="{{ item.quantity }}"
+                  data-variant="{{ item.title | escape }}">
+                  <i class="fas fa-times"></i>
+                </a>
+              </div>
+            </li>
+            {% elsif item.type == 'gift' %}
+            <!-- 買額贈 -->
+            <li class="item gift-item">
+              <div class="product_info d-flex align-items-center">
+                <div class="product_image img-flex">
+                  <img src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ item.product.featured_image | product_img_url: 'thumb' }}" alt="{{ item.product.title }}">
+                </div>
+                <div class="product_name">
+                  <a href="{{ item.product.url }}" class="title">{{ item.title }}</a><br>
+                  <strong>贈禮</strong>
+                </div>
+              </div>
+              <div class="unit_price">
+              </div>
+              <div class="quantity">
+              </div>
+              <div class="total_price d-flex justify-content-center align-items-center">
+                Free
+              </div>
+              <div class="cancel_product">
+              </div>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <div class="form_footer d-flex justify-content-between">
+          <span class="customer_bonus">
+            {% if customer.total_bonus_points > 0 %}
+              您目前的紅利點數尚有 {{customer.total_bonus_points}}
+            {% else  %}
+              您目前還沒有紅利點數
+            {% endif %}
+          </span>
+          <span class="cart_total_item">
+            購物車內合計有 {{ cart.items.size }} 項商品，
+            <span class="word-break">總計(不含運費)<span class="total_price"> {{ cart.total_price | money }} </span></span>
+          </span>
+        </div>
+
+        <div class="cart_btn text-center">
+          <a href="/" class="btn btn-outline-dark">繼續購物</a>
+          <button class="btn btn-outline-dark" type="submit" name="checkout" value="1">進行結帳</button>
+        </div>
+      </form>
+    {% else %}
+      {% include '_cart_empty' %}
+    {% endif %}
+    <!-- add buy start -->
+    <div class="add-buy">
+      {% if cart.add_buy_items.size > 0 %}
+        <h5 class="section-heading">加購價商品 活動專區</h5>
+        {% include 'swiper_product', session:"add-buy", session_title:"加價購", swiper_products: cart.add_buy_items %}
+      {% endif %}
+    </div>
+    <!-- add buy end -->
+  </div>
+</div>
+
+{{ 'js/cart.js'  | asset_url | script_tag }}
+{% include 'addcart_modal', add_buy: true %}
+
+<script>
+  $(document).ready(function(){
+    $(".select-quantity").on("change",function() {
+      $("#cart_form").submit();
+    });
+    $('.add-buy a').click(function(e){
+      e.preventDefault();
+      var timeout = new Date().getTime() + 15*60*1000; //add 15 minutes;
+      window.location.href = $(this).attr('href') +
+        '?add-buy=' + $(this).data('collection_id') +
+        '&price=' + $(this).data('price') +
+        '&timeout=' + timeout;
+    });
+    // Scupio
+    if(document.querySelector("meta[name=\"scupio_mid\"]")){
+      mid = document.querySelector("meta[name=\"scupio_mid\"]").content;
+    }else{
+      mid = "";
+    }
+    if (store.get('customer').id){
+      uid = store.get('customer').id
+    }else{
+      uid = ""
+    }
+
+    (window._bwtm = window._bwtm || []).push({
+      "mid": mid,
+      "pid": "cart",
+      "convid": "cart",
+      "carts": [
+      {% for item in cart.items%}
+          {
+            "itemid": "{{ item.sku }}",
+            "price": {{ item.price }},
+            "count": {{ item.quantity }}
+          },
+      {% endfor %}
+
+      ],
+      "uid": uid,
+    });
+    is_scupio_sent = true;
+    // End of Scupio
+  })
+</script>

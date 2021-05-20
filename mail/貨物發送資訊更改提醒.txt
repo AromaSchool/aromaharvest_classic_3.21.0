@@ -1,0 +1,13 @@
+親愛的{{ shipping_address.name }},
+
+  您的訂單編號為{{ name }}的商品更改了寄送資訊：
+
+{% for line in fulfillment.line_items %}{{ line.quantity }} x  {{ line.title }}
+{% endfor %}
+
+ 它們將通過{% if fulfillment.tracking_company %} {{ fulfillment.tracking_company_name }}{% endif %} 運送，貨運單號為{{ fulfillment.tracking_number }}.
+ {% if fulfillment.tracking_url != blank %}您可以通過下面鏈接查詢：
+  {{ fulfillment.tracking_url }}
+ {% endif %}
+
+ 歡迎您再次到{{shop_name}}購物，祝您購物愉快！

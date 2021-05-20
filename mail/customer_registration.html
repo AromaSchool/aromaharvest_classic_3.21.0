@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顧客註冊通知與商家介紹信</title>
+</head>
+<style>
+@charset "UTF-8";
+.mail_container{
+    text-align: center;
+}
+.mail_container img{
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+.mail_container h1{
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: center;
+    margin: 20px auto;
+}
+.mail_content{
+    text-align: center;
+    line-height: 1.5;
+}
+.mail_content span{
+    text-decoration: underline;
+}
+.link_style{
+    color: #C3986A;
+    font-weight: bold;
+}
+.mail_bg_color{
+    background: #F6F6F6;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 20px 0 20px;
+}
+.mail_btn{
+    display: inline-block;
+    margin: 20px auto 10px;
+    text-decoration: none;
+    background: #916447;
+    padding: 10px 15px;
+    border-radius: 3px;
+    transition-duration: .2s;
+    color: #fff !important;
+    letter-spacing: 1px;
+}
+.mail_footer{
+    color: #9A9EA2;
+    font-size: 13px;
+    text-align-last: left;
+    border-top: solid 1px #bec1c4;
+    margin-top: 20px;
+}
+.mail_footer_title{
+    margin: 10px 0 5px;
+}
+.mail_footer ul{
+    margin-top: 0;
+    padding-left: 20px;
+}
+</style>
+<body>
+    <div class="mail_container">
+        <div class="mail_header">
+            <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/aromaharvest_logo_color.png" alt="logo" style="display: block;margin: 20px auto;text-align: center;">
+            <h1 style="font-size: 18px;line-height: 1.3;text-align: center;margin: 20px auto;">歡迎加入{{ shop.name }}</h1>
+        </div>
+        <div class="mail_content" style="text-align: center;line-height: 1.5;">
+            <p>Hi，親愛的{{customer.name}}：</p>
+            <p>歡迎成為 {{ shop.name }} 依蘭會員。</p>
+            <p>我是創辦人、同時也是禾場國際芳療學苑校長，<br>
+                2003 年以來，AromaHarvest 一直是芳療圈裡隱藏的芳療產品品牌，<br>
+                默默地成為專業芳療師最信賴的療癒伙伴，<br>
+                同時也為一群追求自然身心療癒的人們帶來全系列的精油、純露、基底油，</p>
+            <p>
+                從品牌開創以來，沐禾 AromaHarvest以「頂級品質的決心」<br>
+                為每一滴精油付出了最真誠的努力，<br>
+                希望帶給大家自然植物最純粹的美好。
+            </p>
+            <p>
+                我一直認為，能因芳療相遇是件幸福的事，<br>
+                因此很珍惜你選擇成為我們的會員， <br>
+                這裡特別準備了50點購物金作為見面禮，<br>
+                還有多種會員獨享優惠，<br>
+                別忘了瀏覽屬於你的會員權益。
+            </p>
+            <p>
+                同時我們在這裡樂於聽到任何關於沐禾 AromaHarvest 的感受，<br>
+                讓我們就從分享開始這趟探索芳療世界的美好旅程。
+            </p>
+            <p>祝 購物愉快</p>
+            <p>沐禾 AromaHarvest</p>
+            <div class="mail_footer" style="color: #9A9EA2;font-size: 13px;text-align-last: left;border-top: solid 1px #bec1c4;margin-top: 20px;">
+                <div class="mail_footer_title" style="margin: 10px 0 5px;">反詐騙！沐禾提醒您「2不1求證」</div>
+                <ul style="margin-top: 0;padding-left: 20px;">
+                    <li>不操作ATM－ATM並沒有解除分期付款的選項。</li>
+                    <li>不透露信用卡資料－請勿隨意透露信用卡號與到期日。</li>
+                    <li>求證相關單位－懷疑來電者身份，請撥警政署防詐騙專線165查證。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

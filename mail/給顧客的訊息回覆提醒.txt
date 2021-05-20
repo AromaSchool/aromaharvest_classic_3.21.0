@@ -1,0 +1,9 @@
+親愛的{{ customer.name }},
+
+  您好，我們已經回覆您的問題或意見:
+
+  {{message_comment}}
+
+  請到 {{ customer_url }} 上查看回覆
+
+  感謝您對{{shop.name}}的建議，祝您購物愉快！

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單付款提醒(顧客)</title>
+</head>
+<style>
+@charset "UTF-8";
+.mail_container{
+    text-align: center;
+}
+.mail_container img{
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+.mail_container h1{
+    font-size: 18px;
+    text-align: center;
+    margin: 20px auto;
+}
+.mail_content{
+    text-align: center;
+    line-height: 1.5;
+}
+.mail_content span{
+    text-decoration: underline;
+}
+.link_style{
+    color: #C3986A;
+    font-weight: bold;
+}
+.mail_footer{
+    color: #9A9EA2;
+    font-size: 13px;
+    text-align-last: left;
+    border-top: solid 1px #bec1c4;
+    margin-top: 20px;
+}
+.mail_footer_title{
+    margin: 10px 0 5px;
+}
+.mail_footer ul{
+    margin-top: 0;
+    padding-left: 20px;
+}
+</style>
+<body>
+    <div class="mail_container">
+        <div class="mail_header">
+            <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/aromaharvest_logo_color.png" alt="logo">
+            <h1>[{{ shop_name }}] 訂單 {{ name }} 取消提醒</h1>
+        </div>
+        <div class="mail_content">
+            <p>親愛的{{customer.name}}：</p>
+            <p>您的訂單 <span>{{ name }}</span> 已取消，取消原因是：<span>{{ cancel_reason }} </span>。<br>
+                {% unless cancel_reason == '沒有及時付款'%} 如果您已付款，我們將會把款項退還給您！ {% endunless %}<br>
+                如果您有任何疑問，可以回覆此郵件！</p>
+            <p>歡迎您再次到 <a class="link_style" href="https://www.aromaharvest.com/">{{shop_name}}</a> 購物，祝您購物愉快！</p>
+            <div class="mail_footer">
+                <div class="mail_footer_title">反詐騙！沐禾提醒您「2不1求證」</div>
+                <ul>
+                    <li>不操作ATM－ATM並沒有解除分期付款的選項。</li>
+                    <li>不透露信用卡資料－請勿隨意透露信用卡號與到期日。</li>
+                    <li>求證相關單位－懷疑來電者身份，請撥警政署防詐騙專線165查證。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

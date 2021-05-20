@@ -1,0 +1,668 @@
+{% include 'breadcrumb', url: "home/product_collection/product" %}
+{% assign product = product | price_with_discount %}
+<div id="product" class="product" data-cart_quantity_limit="{{ settings['cart_quantity_limit']}}">
+  <div class="container">
+    <!-- product info start -->
+    <div class="product_info">
+      <!-- product image start -->
+      <div class="product_photos">
+        {% if settings.display_product_images_color %}
+          <!-- 有色票 -->
+          <div class="product_photo img-flex">
+            <img id="photo_with_images_color" class="img-lazy" src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ product.images.first | product_img_url: 'grande' }}" width="450" height="450">
+          </div>
+        {% else %}
+          <!-- 沒色票 -->
+          <div class="swiper-container product_img_swiper">
+            <ul class="swiper-wrapper">
+              {% if product.images.size == 0 %}
+                <li class="swiper-slide product_photo img-flex"><img src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ product.featured_image | product_img_url: 'grande' }}" width="450" height="450" class="swiper-lazy"></li>
+              {% else %}
+                {% for image in product.images %}
+                  <li class="swiper-slide product_photo img-flex">
+                    <img data-src="{{image | product_img_url:'grande'}}" width="450" height="450" class="swiper-lazy">
+                    <div class="swiper-lazy-preloader"></div>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next photo-swiper-next swiper-button"></div>
+            <div class="swiper-button-prev photo-swiper-prev swiper-button"></div>
+          </div>
+          <!-- 圖片頁碼 -->
+          <div class="thumb">
+            <ul class="thumb-container">
+              {% if product.images.size == 0 %}
+                <li class="img-flex active">
+                  <img class="img-lazy" src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ product.featured_image | product_img_url: 'grande' }}" width="50" hwight="50">
+                </li>
+              {% else %}
+                {% for image in product.images %}
+                  <li class="img-flex {% if forloop.first %} active {% endif %}">
+                    <img class="img-lazy" src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ image | product_img_url: 'grande' }}" width="50" hwight="50">
+                  </li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+      <!-- product image end -->
+      <!-- product content start -->
+      <div id="product_content" class="product_content">
+        <!-- 標題 -->
+        <div class="product_title">
+          <h1>{{product.title}}</h1>
+        </div>
+        <!-- 簡述 -->
+        {% if product.brief and product.brief != '' %}
+          <div class="product_brief">
+            {{product.brief}}
+          </div>
+        {% endif %}
+        <!-- 廠商,標語 -->
+        <div class="product_vendor_slogan">
+          {% if product.vendor and product.vendor != '' %}
+            <span class="product_vendor text-center lh30">{{product.vendor}}</span>
+          {% endif %}
+          {% if product.slogan and product.slogan != '' %}
+            <span class="product_slogan lh30">{{product.slogan}}</span>
+          {% endif %}
+        </div>
+        <!-- 商品售價 -->
+        {% if settings.display_discount_price_name %}
+          {% assign discount_price_name = settings.discount_price_name %}
+        {% else %}
+          {% assign discount_price_name = "優惠售價" %}
+        {% endif %}
+        {% if settings.display_discount_price_suggestion_name %}
+          {% assign discount_price_suggestion_name = settings.discount_price_suggestion_name %}
+        {% else %}
+          {% assign discount_price_suggestion_name = "建議售價" %}
+        {% endif %}
+        <div class="product_price" id="price_title"
+          data-discount-price-name="{{discount_price_name}}"
+          data-discount-price-suggestion-name="{{discount_price_suggestion_name}}">
+          <!-- 價格title -->
+          {% if product.compare_at_price_max %}
+            <span class="title">{{discount_price_name}}</span>
+          {% else %}
+            <span class="title">{{discount_price_suggestion_name}}</span>
+          {% endif %}
+
+          <!-- 商品價格 -->
+          {% if product.price_min == product.price_max %}
+            <!--假如商品價格只有一種-->
+            <div class="price">{{ product.price_min | money }}</div>
+            {% if product.compare_at_price_max and product.compare_at_price_max > product.price_min %}
+              <del>{{ product.compare_at_price_max | money }}</del>
+            {% endif %}
+          {% else %}
+            <div class="price">{% money_range min: product.price_min, max: product.price_max %}</div>
+            <del></del>
+          {% endif %}
+
+          <!--會員可見價-->
+          {% if product.vip_custom_price? %}
+            {% if customer %}
+              {% if customer.vip %}
+                <div class="vip_tag">{{customer.vip}}</div>
+              {% endif %}
+            {% else %}
+              {% assign tag_text = settings.vip_custom_price_text %}
+              {% assign tag_link = settings.vip_custom_price_href %}
+              {% if tag_text != blank %}
+                {% if tag_link != blank %}
+                  <a
+                    class="vip_tag"
+                    href="{{tag_link}}"
+                    target="_blank"
+                    rel="noreferrer noopener">
+                    {{tag_text}}
+                  </a>
+                {% else %}
+                  <div class="vip_tag">{{tag_text}}</div>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        </div>
+        <!-- 商品sku -->
+        {% if settings.display_product_sku %}
+          <div class="product_sku lh30">
+            <span>商品編號: </span>
+            <span class="val">{{product.existing_variants.first.sku}}</span>
+          </div>
+        {% endif %}
+        <!-- 供貨狀況 -->
+        {% if settings.display_inventory_policy %}
+          <div class="product_inventory_policy lh30">
+            <span>供貨狀況: </span>
+            <span class="val">尚有庫存</span>
+          </div>
+        {% endif %}
+
+        <!-- 商品款式 -->
+        <div id="variant_options" class="variant_options">
+          <variant-options-block
+            :product-api-url="'/products/{{product.handle}}'"
+            @set-choose="getSelectedDatas"
+            @get-option-image="getCurrentImage"
+          >
+          </variant-options-block>
+        </div>
+
+        <!-- product discounts_list start -->
+        <div class="product_discounts_list hide">
+          <div class="list_block custom-scrollbar">
+            <h1>此商品參與的優惠活動</h1>
+          </div>
+        </div>
+        <!-- product discounts_list end -->
+
+        <!-- 規格,數量 -->
+        <div class="product_variant_quantity">
+          <span class="product_quantity">
+            <div class="btn-group" role="group" aria-label="First group">
+              <button class="btn btn-light-gray add-down" type="button" ></button>
+              <input class="btn btn-light-gray item-quantity" type="text" name="quantity" value="1" data-old-value="1">
+              <button class="btn btn-light-gray add-up" type="button" ></button>
+            </div>
+          </span>
+        </div>
+
+        <!-- 購買按鈕 -->
+        {% if shop.cart_enabled %}
+          <div class="product_button">
+            <button class="btn addToCart btn_to_cart" type="button"
+              data-brand="{{ product.vendor | escape }}"
+              data-id="{{ product.id }}"
+              data-category="{{ product.product_type | escape }}"
+              data-list="單產品細覽"
+              data-name="{{ product.title | escape }}"
+              data-quantity="1"
+              data-position="全頁"
+              data-cid="{{ product.collections[0].id }}"
+              data-cname="{{ product.collections[0].class_name }}"
+              data-sku="{{ product.variants[0].sku }}">加入購物車</button>
+            <button class="btn addToCart btn-quick_buy" type="button" data-buy="quick_buy"
+              data-brand="{{ product.vendor | escape }}"
+              data-id="{{ product.id }}"
+              data-category="{{ product.product_type | escape }}"
+              data-list="單產品細覽"
+              data-name="{{ product.title | escape }}"
+              data-quantity="1"
+              data-position="全頁"
+              data-cid="{{ product.collections[0].id }}"
+              data-cname="{{ product.collections[0].class_name }}"
+              data-sku="{{ product.variants[0].sku }}">立即購買</button>
+            <button id="buy-message" class="btn btn_msg hidden" type="button"
+              data-toggle="modal" data-target="#messagebuy-Modal">
+              聯絡店家
+            </button>
+            <button class="btn buy-together hidden" type="button"
+              data-brand="{{ product.vendor | escape }}"
+              data-id="{{ product.id }}"
+              data-category="{{ product.product_type | escape }}"
+              data-list="單產品細覽"
+              data-name="{{ product.title | escape }}"
+              data-quantity="1"
+              data-position="全頁"
+              data-cid="{{ product.collections[0].id }}"
+              data-cname="{{ product.collections[0].class_name }}"
+              data-sku="{{ product.variants[0].sku }}">同時購買</button>
+          </div>
+          <div class="product_button_mobile">
+            <button class="btn btn_to_cart_mobile open_product_modal"
+              data-handle="{{ product.handle }}"
+              data-collection="{{ product.collections[0].id }}">
+              加入購物車</button>
+            <button class="btn btn_quick_buy_mobile open_quick_buy_modal"
+              data-handle="{{ product.handle }}"
+              data-collection="{{ product.collections[0].id }}">
+              立即購買</button>
+            <button class="btn btn_msg_mobile hidden" type="button"
+              data-toggle="modal" data-target="#messagebuy-Modal">
+              聯絡店家
+            </button>
+            <button class="btn buy-together hidden" type="button"
+              data-brand="{{ product.vendor | escape }}"
+              data-id="{{ product.id }}"
+              data-category="{{ product.product_type | escape }}"
+              data-list="單產品細覽"
+              data-name="{{ product.title | escape }}"
+              data-quantity="1"
+              data-position="全頁"
+              data-cid="{{ product.collections[0].id }}"
+              data-cname="{{ product.collections[0].class_name }}"
+              data-sku="{{ product.variants[0].sku }}">同時購買</button>
+          </div>
+          <div class="product_button_mobile_default hidden">
+            <button class="btn btn_to_cart_mobile_default open_product_modal"
+              data-handle="{{ product.handle }}"
+              data-collection="{{ product.collections[0].id }}">
+              加入購物車</button>
+            <button class="btn btn_quick_buy_mobile_default open_quick_buy_modal"
+              data-handle="{{ product.handle }}"
+              data-collection="{{ product.collections[0].id }}">
+              立即購買</button>
+            <button class="btn btn_msg_mobile_default hidden" type="button"
+              data-toggle="modal" data-target="#messagebuy-Modal">
+              聯絡店家
+            </button>
+            <button class="btn buy-together hidden" type="button"
+              data-brand="{{ product.vendor | escape }}"
+              data-id="{{ product.id }}"
+              data-category="{{ product.product_type | escape }}"
+              data-list="單產品細覽"
+              data-name="{{ product.title | escape }}"
+              data-quantity="1"
+              data-position="全頁"
+              data-cid="{{ product.collections[0].id }}"
+              data-cname="{{ product.collections[0].class_name }}"
+              data-sku="{{ product.variants[0].sku }}">同時購買</button>
+          </div>
+        {% endif %}
+        <!-- 加入最愛,銷售數量,紅利折抵 -->
+        <div class="product_others">
+          <span class="product_love">
+            <input type="hidden" class="product-variant-id" value="{{ product.existing_variants.first.id }}">
+            <a class="btn_love scupio-add-wishlist"
+               data-itemid="{{ product.existing_variants.first.sku }}"
+               data-cid="{{ product.collections[0].id }}"
+               data-cname="{{ product.collections[0].class_name}}">
+              <i class="fas fa-heart"></i>加入最愛
+            </a>
+          </span>
+          {% if settings.display_product_total_sold %}
+            <span class="product_sold">
+              <span>已銷售: {{ product.total_sold }} 件</span>
+            </span>
+          {% endif %}
+          <span class="product_bonus" {%if shop.bonus_enabled? == false %} hidden {%endif%}>
+            此商品可以折抵紅利
+            <span class="val">{{product.variants_max_usable_bonus | floor }}</span>
+            點
+          </span>
+        </div>
+      </div>
+      <!-- product content end -->
+    </div>
+    <!-- product info end -->
+
+    <!-- product add buy -->
+    {% include "add_buy_products" %}
+    <!-- product add buy end -->
+
+    <!-- product description start -->
+    <div class="product_description">
+      <div class="desc_sections">
+        <ul>
+          <!-- 商品介紹 -->
+          <li><a href="#desc_section_1" class="scroll active">
+            <div>商品介紹</div>
+          </a></li>
+          <!-- 規格說明 -->
+          {% if settings.description_section_spec_setting %}
+            <li><a href="#desc_section_2" class="scroll">
+              <div>{{ settings.product_description_section_spec }}</div>
+            </a></li>
+          {% endif %}
+          <!-- 運送方式 -->
+          {% if settings.description_section_shipping_setting %}
+            <li><a href="#desc_section_3" class="scroll">
+              <div>{{ settings.product_description_section_shipping }}</div>
+            </a></li>
+          {% endif %}
+          <!-- 加入購物車modal -->
+          {% if shop.cart_enabled %}
+            <li>
+              <a id="add_to_cart" class="open_product_modal"
+                data-id="{{ product.id }}"
+                data-handle="{{ product.handle }}"
+                data-collection="{{ product.collections[0].id }}">
+                <div>加入購物車</div>
+              </a>
+              <a id="message_to_buy" class="open_messagebuy_modal"
+                data-toggle="modal"
+                data-target="#messagebuy-Modal">
+                <div>聯絡店家</div>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="desc_body">
+        <div id="ckeditor">
+          <div id="desc_section_1" class="desc_section">
+            <h5 class="section-heading">商品介紹</h5>
+            <div class="ckeditor">{{ product.description }}</div>
+          </div>
+          {% if settings.description_section_spec_setting %}
+            <div id="desc_section_2" class="desc_section">
+              <h5 class="section-heading">{{ settings.product_description_section_spec }}</h5>
+              <div class="ckeditor">{{ product.other_descriptions.spec.body_html }}</div>
+            </div>
+          {% endif %}
+          {% if settings.description_section_shipping_setting %}
+            <div id="desc_section_3" class="desc_section">
+              <h5 class="section-heading">{{ settings.product_description_section_shipping }}</h5>
+              <div class="ckeditor">{{ product.other_descriptions.shipping.body_html }}</div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <!-- product description end -->
+  </div>
+</div>
+{% if shop.facebook_product_comment_enabled %}
+  <div class="container">
+    <div class="fb-comments" data-href="{{shop.url}}{{product.url}}" data-width="100%" data-numposts="5" data-colorscheme="{{settings.facebook_scheme}}"></div>
+  </div>
+{% endif %}
+{% if shop.plugins.board_comments %}
+  <div class="container">{% comments to: product style: base %}</div>
+  <style>.board > .paging { padding: 0 15px; }</style>
+{% endif %}
+<!-- related products start -->
+<div id="related-products">
+  <div class="container">
+    {% if settings.display_related_cols %}
+      {% assign all_related_product = product.related_products %}
+    {% endif %}
+    {% assign limit = settings.related_products_limit | times: 1 %}
+    {% if settings.use_custom_related_cols %}
+      {% if settings.display_related_cols == false or all_related_product.size < limit %}
+        {% for related_col in product.related_cols %}
+          {% assign related_col_products = related_col.relatable_collection.products | first: settings.related_products_limit | without: 'title', product.title %}
+          {% assign related_cols_products = related_cols_products | concat: related_col_products %}
+          {% if related_cols_products.size >= limit %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% if all_related_product.size > 0 %}
+          {% assign all_related_product = all_related_product | concat: related_cols_products %}
+        {% else %}
+          {% assign all_related_product = related_cols_products %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+    {% if all_related_product.size > 0 %}
+      <h5 class="section-heading">{{settings.group_related_cols_related_product}}</h5>
+      {% include 'swiper_product', session:"related-products", session_title:"相關商品", swiper_products: all_related_product, limit: limit %}
+    {% endif %}
+  </div>
+</div>
+<!-- related products end -->
+
+{{ 'js/cart.js'  | asset_url | script_tag }}
+{{ 'js/product_variant.js'  | asset_url | script_tag }}
+{{ 'css/beta_theme/product.css' | asset_url | stylesheet_tag }}
+
+{% include 'new_addcart_modal' %}
+{% include 'components/variant_options/variant_options_block' %}
+
+{% gallery name: 'img' %}
+
+<script>
+  // 設定款式資訊/顯示款式資訊
+  function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+  }
+  $(document).ready(function(){
+    // 商品款式
+    var productPriceRange = $('.product_price .price').text();
+    var selectedVariant = {};
+    themeHelper.variantOptionsBlock(setSelectedVariant, isAddBuy, productPriceRange);
+
+    // cart 跳轉到商品頁加購價 start
+    var collection_id = getURLParameter('add-buy');
+    var price         = getURLParameter('price');
+    var timeout       = getURLParameter('timeout');
+    var isAddBuy    = false;
+    if (collection_id !== null && timeout !== null && price !== null){
+      isAddBuy = true;
+    }
+    $(function() {
+      if (isAddBuy && new Date().getTime() < timeout) {
+        price = moneySymbol(price);
+        $("#product .product_price span").text("加購價");
+        $("#product .price").text(price);
+        $("#product .addToCart").data("type", "add-buy");
+        $("#product .addToCart").data("collection_id", collection_id);
+      }
+    });
+
+    // 初始化，檢查所有商品的庫存，判斷購物車按鈕和庫存顯示狀態
+    var checkButtonStatus;
+    (checkButtonStatus = function() {
+      // 商品頁下滑，購物車按鈕顯示，當沒有任一庫存時，才顯示聯絡客服
+      var variants_info = "{{ product.variants_info }}";
+      var isHideAddToCartBtn = new ProductVariants(variants_info).get_product_option_list().every(function(item){
+        return item.quantity === "0" && item.inventory_policy === "deny";
+      });
+      var isPreOrder = new ProductVariants(variants_info).get_product_option_list().every(function(item){
+        return item.quantity === "0" && item.inventory_policy === "continue";
+      });
+      if (isHideAddToCartBtn) {
+        // 商品頁下滑加入購物車按鈕
+        $('#add_to_cart').css("display", "none");
+        $('.btn_to_cart_mobile').hide();
+        $('.btn_to_cart_mobile_default').hide();
+        $('.btn_quick_buy_mobile').hide();
+        $('.btn_quick_buy_mobile_default').hide();
+        $('#message_to_buy').css("display", "block");
+        $('.btn_msg_mobile').show();
+        $('.btn_msg_mobile_default').show();
+        // 購物車按鈕和庫存狀態
+        $('.addToCart').hide();
+        $('.btn_msg').show();
+        $('.product_inventory_policy .val').text("庫存不足");
+      } else {
+        if (isPreOrder) {
+          $('#add_to_cart').text("預購商品");
+          $('.btn_to_cart_mobile').text("預購商品");
+          $('.btn_to_cart_mobile_default').text("預購商品");
+          $('.btn_quick_buy_mobile').hide();
+          $('.btn_quick_buy_mobile_default').hide();
+        }
+      }
+    })();
+
+    // 商品圖輪播
+    var productImage = new Swiper('.product_img_swiper', {
+      // Disable preloading of all images
+      preloadImages: false,
+      // Enable lazy loading
+      lazy: true,
+      loop: true,
+      navigation: {
+        nextEl: '.photo-swiper-next',
+        prevEl: '.photo-swiper-prev',
+      }
+    });
+
+    // 圖片放大
+    $('.product_photos .swiper-container .swiper-button').on('click', function(e){
+      e.stopPropagation()
+    })
+    $('.product_photo.img-flex img').on('click', function(){
+      if (document.getElementById('photo_with_images_color')) {
+        var index = 0;
+        var productsSrc = [document.getElementById('photo_with_images_color').src];
+      } else if (productImage.$wrapperEl) {
+        var index = productImage.realIndex;
+        var productImages = $(productImage.$wrapperEl[0]).find('img');
+        var productsSrc = [];
+        productImages.map(function(index, el) {
+          if (index !== 0 && index !== productImages.length-1) {
+            productsSrc.push(el.dataset.src || el.src)
+          }
+        })
+      } else {
+        return null;
+      }
+      gallery_img.updateImgs(productsSrc)
+      gallery_img.toggleGallery(true, { index: index })
+    });
+
+    // 圖片頁碼
+    $(".thumb").on('click', 'li', function(){
+      $(this).addClass('active').siblings().removeClass('active');
+      productImage.slideTo($(this).index()+1, 500);
+    });
+    // 輪播轉換縮圖
+    $('.product_img_swiper .swiper-button').click(function(){
+      var swiperIndex = $('.swiper-slide').index($('.swiper-slide-active'));
+      var pages = $(".thumb li").length;
+      var photoIndex = (swiperIndex + pages - 1 ) % pages;
+      $($(".thumb li")[photoIndex]).addClass('active').siblings().removeClass('active');
+    });
+    //滑動換圖
+    productImage.on('touchEnd', function(){
+      setTimeout(function(){
+        var swiperIndex = $('.swiper-slide').index($('.swiper-slide-active'));
+        var pages = $(".thumb li").length;
+        var photoIndex = (swiperIndex + pages - 1 ) % pages;
+        $($(".thumb li")[photoIndex]).addClass('active').siblings().removeClass('active');
+      }, 300);
+    });
+
+    // 商品說明介紹標籤
+    $(".desc_sections li").on('click', function(){
+      $(this).children().addClass('active');
+      $(this).siblings().children().removeClass('active');
+      productImage.slideTo($(this).index() + 1, 500);
+    });
+    // 產品說明
+    $(window).on('scroll', function () {
+      var headerHeight = $("#header").height()
+      var desc_sections = $(".desc_sections");
+      var desc_section_list = $(".desc_section");
+      var descSectionHeight = $(".desc_sections").height()
+      var descSectionTop = $(".desc_sections").offset().top - headerHeight
+      var product_window = $(this);
+      // 滑動固定產品說明
+      if (product_window.scrollTop() > descSectionTop){
+        desc_sections.stop().addClass("desc_sections_hold").css({"min-height": descSectionHeight}).find("ul").css({"top": headerHeight})
+        if($(window).width() < 768) {
+          // 手機版，往下滑時，開啟 product modal
+          $(".product_button_mobile").css("display", "none");
+          $(".product_button_mobile_default").css("display", "flex");
+        }
+      }else{
+        desc_sections.stop().removeClass("desc_sections_hold")
+        if($(window).width() < 768) {
+          $(".product_button_mobile").css("display", "flex");
+          $(".product_button_mobile_default").css("display", "none");
+        }
+      }
+      // 點選產品說明滑動
+      $(".desc_sections a.scroll").bind("click",function(event){
+        var targetScrollTop = $($(this).attr("href")).offset().top - headerHeight - descSectionHeight + 1
+        $("html, body").stop().animate({scrollTop: targetScrollTop}, 300);
+      });
+      // 顯示當前產品說明
+      $.each(desc_section_list, function(index, desc_section){
+        var desc_sectionTop = $(desc_section).offset().top - headerHeight - descSectionHeight - 1
+        var desc_sectionHeight = $(desc_section).height()
+        var current_desc_section = $("a.scroll[href$='" + $(desc_section).attr("id") + "']");
+        if (product_window.scrollTop() > desc_sectionTop || index === 0){
+          current_desc_section.stop().addClass('active').parent().siblings().find("a").removeClass('active')
+        }else{
+          current_desc_section.removeClass('active')
+        }
+      });
+    });
+
+    // 加入購物車 open product modal
+    $(".open_product_modal").on('click', function(){
+      var variants = parseInt("{{ product.options.size }}");
+      // 若單一選項，不須跳出 modal，直接加入購物車
+      if (variants > 0) {
+        var variantId = selectedVariant.id;
+        if ($(".desc_sections").hasClass("desc_sections_hold")) {
+          var productHandle = '/products/' + $(this).data('handle');
+          var collectionId = $(this).data('collection');
+          new_addcart_modal.popModal(productHandle, collectionId, null, null, false, false, variantId);
+        } else {
+          // 當於上方列時，判斷是否有選到東西，有的話直接加入購物車，不須跳出文字提示
+          if (parseInt(variantId) > 0) {
+            $(".btn_to_cart").trigger('click');
+          } else {
+            window.msg("請選擇商品", 'info').show();
+          }
+        }
+      } else {
+        $(".btn_to_cart").trigger('click');
+      }
+    })
+    // 立即購買 mobile product modal
+    $(".open_quick_buy_modal").on('click', function(){
+      var variants = parseInt("{{ product.options.size }}");
+      // 若單一選項，不須跳出 modal，直接加入購物車
+      if (variants > 0) {
+        var variantId = selectedVariant.id;
+        if ($(".desc_sections").hasClass("desc_sections_hold")) {
+          var productHandle = '/products/' + $(this).data('handle');
+          var collectionId = $(this).data('collection');
+          new_addcart_modal.popModal(productHandle, collectionId, null, null, false, true, variantId);
+        } else {
+          // 當於上方列時，判斷是否有選到東西，有的話直接加入購物車，不須跳出文字提示
+          if (parseInt(variantId) > 0) {
+            $(".btn-quick_buy").trigger('click');
+          } else {
+            window.msg("請選擇商品", 'info').show();
+          }
+        }
+      } else {
+         $(".btn-quick_buy").trigger('click');
+      }
+    })
+
+    function setSelectedVariant(variant) {
+      selectedVariant = variant;
+    }
+
+    function groupBy(xs, key) {
+      return xs.reduce(function (rv, x) {
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+      }, {});
+    };
+
+    function setUpDiscountsTag() {
+      $.ajax({
+        url: window.location.pathname + '/discounts_list',
+        method: 'GET',
+        success: function(result){
+          if ( result.length > 0 ) {
+            var discounts_list = groupBy(result, 'campaign_type');
+            Object.keys(discounts_list).map(function(key, index){
+              discounts_list[key].map(function(discount, index){
+                var discount_row = document.createElement('div');
+                discount_row.className = 'discount-list';
+                if (discount.url){
+                  var discount_title = document.createElement('a');
+                  $(discount_title).attr("href", discount.url);
+                }else{
+                  var discount_title = document.createElement('span');
+                }
+                discount_title.className = 'discount-title'
+                discount_title.innerText = discount.title;
+                discount_row.append(discount_title);
+                $('.product_discounts_list .list_block').append(discount_row);
+              });
+            });
+            $('.product_discounts_list').removeClass('hide')
+          }
+        },
+      });
+    }
+    {% if settings.display_product_discounts_list %}
+      setUpDiscountsTag();
+    {% endif %}
+  })
+</script>

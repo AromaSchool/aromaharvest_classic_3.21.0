@@ -1,0 +1,421 @@
+*{
+    font-family: 'Noto Sans TC', '微軟正黑體',sans-serif;
+}
+/* 通用按鈕 */
+.btn_more{
+    position: relative;
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    transition-duration: .3s;
+    overflow: hidden;
+    z-index: 2;
+    cursor: pointer;
+}
+.btn_more:before{
+    content: '';
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition-duration: .3s;
+    z-index: -1;
+    opacity: 0;
+}
+.btn_more.dark{
+    background: #F0F0EF;
+    color: #8C8C7E;
+}
+.btn_more.dark:before{
+    background: #8c8c7e;
+}
+.btn_more.light{
+    background: #fff;
+    color: #8C8C7E;
+}
+.btn_more.light:before{
+    background: #8c8c7e;
+}
+.btn_more:hover{
+    text-decoration: none;
+}
+.btn_more:hover:before{
+    left: 0;
+    opacity: 1;
+}
+.btn_more:hover{
+    color: #fff;
+}
+
+/* 品牌故事 */
+.story_block{
+    position: relative;
+    text-align: center;
+    color: #3a3a3a;
+}
+.story_block .oil_1{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40%;
+    max-width: 535px;
+    z-index: -1;
+}
+.story_block .oil_2{
+    position: absolute;
+    right: 10%;
+    bottom: 0;
+    width: 20%;
+    max-width: 120px;
+    z-index: -1;
+}
+.story_block .container{
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+.story_block h2{
+    font-size: 22px;
+    color: #8c8c7e;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+.story_block .story_box{
+    line-height: 1.8;
+}
+.story_block .story_box p{
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+/* 今天我想來點 */
+.make_your_day_block{
+    text-align: center;
+    background: #F6F6F6;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.make_your_day_block .title_block h2{
+    color: #8c8c7e;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.make_your_day_block .title_block span{
+    color: #3a3a3a;
+    font-size: 15px;
+    font-weight: 300;
+}
+.your_day_block{
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+.your_day_box{
+    display: inline-block;
+    position: relative;
+}
+.your_day_box .circle{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    transition-duration: .3s;
+}
+.your_day_box:hover .circle{
+    background: #f3e096;
+    width: 80px;
+    height: 80px;
+}
+.your_day_box img{
+    position: relative;
+    z-index: 2;
+}
+
+/* 產品簡介 */
+.product_intro_box{
+    display: flex;
+    align-items: center;
+    background: #EEEEF0;
+    color: #3A3A3A;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+.product_intro_box:nth-child(even){
+    flex-direction: row-reverse;
+}
+.product_intro_box .pd_bg{
+    width: 70%;
+    max-width: 1120px;
+}
+.product_intro_box .pd_bg img{
+    width: 100%;
+}
+.pd_block{
+    text-align: center;
+    margin: 0 100px;
+}
+.pd_title .num{
+    font-size: 18px;
+    font-weight: 600;
+}
+.pd_title .type{
+    font-size: 30px;
+}
+.pd_title .type_en{
+    font-size: 14px;
+    font-weight: 600;
+}
+.pd_sub_title{
+    font-size: 20px;
+    margin: 20px auto;
+}
+.pd_description{
+    font-size: 15px;
+    color: #6A6A6A;
+    margin-bottom: 35px;
+}
+.top_3{
+    position: relative;
+}
+.top_3 > span{
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    transform: translateX(-50%);
+    color: #8C8C7E;
+    font-size: 14px;
+    background: #EEEEF0;
+    padding: 0 12px;
+}
+.pd_top_block{
+    display: flex;
+    border: solid 1px #fff;
+    padding: 30px 30px 20px;
+    margin-bottom: 35px;
+}
+.pd_top_box{
+    position: relative;
+    padding: 10px;
+    z-index: 0;
+}
+.pd_top_box:before{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    z-index: -1;
+    transition-duration: .3s;
+}
+.pd_top_box:hover{
+    text-decoration: none;
+}
+.pd_top_box:hover:before{
+    opacity: 0.4;
+}
+.pd_top_box h5{
+    font-size: 15px;
+    font-weight: 400;
+    color: #3A3A3A;
+}
+.pd_top_box h5 span{
+    display: block;
+    font-size: 13px;
+    color: #6A6A6A;
+    font-weight: 300;
+    margin-top: 5px;
+}
+
+/* 精選文章 */
+.editor_picks_block{
+    position: relative;
+    color: #3A3A3A;
+    margin-top: 60px;
+}
+.editor_picks_block:before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 65%;
+    left: 0;
+    bottom: 0;
+    background: #F6F6F6;
+}
+.editor_picks_block .title_block h2{
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.editor_picks_block .title_block span{
+    font-size: 14px;
+    font-weight: 400;
+}
+.article_block{
+    display: flex;
+    margin: 50px 0;
+}
+.article_box{
+    position: relative;
+    color: #3A3A3A;
+    width: 25%;
+}
+.article_box:hover{
+    text-decoration: none;
+    color: #3A3A3A;
+}
+.article_box:nth-child(even){
+    top: 60px;
+}
+.article_box figure{
+    overflow: hidden;
+}
+.article_box img{
+    width: 100%;
+    transition-duration: .3s;
+}
+.article_box:hover img{
+    transform: scale(1.1);
+}
+.article_content{
+    margin: 15px;
+}
+.article_deco{
+    color: #8C8C7E;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+.article_title{
+    font-size: 15px;
+    margin: 8px 0;
+    font-weight: 500;
+}
+.article_content p{
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.editor_picks_block .btn_block {
+    text-align: right;
+    padding: 55px 0 45px;
+}
+
+@media screen and (max-width: 1366px){
+    /* 產品簡介 */
+    .pd_block{
+        margin: 0 60px;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    /* 產品簡介 */
+    .product_intro_box:nth-child(odd) .pd_block{
+        margin-left: 0;
+    }
+    .product_intro_box:nth-child(even) .pd_block{
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 992px){
+    /* 今天我想來點 */
+    .your_day_block{
+        flex-wrap: wrap;
+    }
+    .your_day_box{
+        width: calc(100% / 3);
+        margin-bottom: 30px;
+    }
+    /* 產品簡介 */
+    .product_intro_box{
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+        padding-top: 60px;
+        padding-bottom: 0px;
+    }
+    .product_intro_box:nth-child(odd) .pd_block{
+        margin: 0 15px;
+    }
+    .product_intro_box:nth-child(even) .pd_block{
+        margin: 0 15px;
+    }
+    .product_intro_box .pd_bg{
+        width: 100%;
+        max-width: initial;
+    }
+    /* 精選文章 */
+    .article_block{
+        flex-wrap: wrap;
+    }
+    .article_box{
+        width: 50%;
+        margin-bottom: 20px;
+    }
+
+}
+
+@media screen and (max-width: 768px){
+    /* 品牌故事 */
+    .story_block br{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 576px){
+    /* 產品簡介 */
+    .pd_top_block{
+        padding: 10px;
+    }
+    .pd_top_box img{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 512px){
+    /* 今天我想來點 */
+    .your_day_box{
+        width: calc(100% / 2);
+    }
+    /* 精選文章 */
+    .editor_picks_block{
+        margin-top: 40px;
+    }
+    .editor_picks_block .title_block{
+        text-align: center;
+    }
+    .article_block{
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .article_box{
+        width: 100%;
+    }
+    .article_box:nth-child(even) {
+        top: 0;
+    }
+    .article_content{
+        margin: 0;
+    }
+    .editor_picks_block .btn_block{
+        padding-top: 0;
+    }
+}

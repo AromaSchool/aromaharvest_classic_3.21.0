@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單付款提醒(顧客)</title>
+</head>
+<style>
+@charset "UTF-8";
+.mail_container{
+    text-align: center;
+}
+.mail_container img{
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+.mail_container h1{
+    font-size: 18px;
+    text-align: center;
+    margin: 20px auto;
+}
+.mail_content{
+    text-align: center;
+    line-height: 1.5;
+}
+.mail_content span{
+    text-decoration: underline;
+}
+.link_style{
+    color: #C3986A;
+    font-weight: bold;
+}
+</style>
+<body>
+    <div class="mail_container">
+        <div class="mail_header">
+            <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/aromaharvest_logo_color.png" alt="logo">
+            <h1>[{{ shop_name }}] 訂單 {{ name }} 完成付款</h1>
+        </div>
+        <div class="mail_content">
+            <p>親愛的{{customer.name}}：</p>
+            <p>您好，我們已經收到您通過 <span>{{ gateway }}</span> 所付款的款項 <span>{{ transaction.amount | money_with_currency }}</span>。<br>
+                訂單編號：<span>{{name}}</span>。</p>
+            <p>歡迎您再次到 <a class="link_style" target="_blank" rel="noreferer noopner" title="{{shop_name}}" href="https://www.aromaharvest.com/">{{shop_name}}</a> 購物，祝您購物愉快！</p>
+        </div>
+    </div>
+</body>
+</html>

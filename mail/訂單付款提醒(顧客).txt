@@ -1,0 +1,9 @@
+電子郵件主旨：[{{ shop_name }}] 訂單 {{ name }} 完成付款
+
+親愛的{{customer.name}}：
+
+   您好，我們已經收到您通過{{ gateway }} 付款的款項{{ transaction.amount | money_with_currency }}。
+
+   訂單編號：{{name}}。
+
+歡迎您再次到{{shop_name}}購物，祝您購物愉快！

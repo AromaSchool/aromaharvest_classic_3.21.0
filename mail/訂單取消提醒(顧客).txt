@@ -1,0 +1,7 @@
+親愛的{{ customer.name }},
+
+  您的訂單{{ name }}已取消！取消原因是:{{ cancel_reason }} 。 {% unless cancel_reason == '沒有及時付款'%} 如果您已付款，我們將會把款項退還給您！ {% endunless %}
+
+  如果，您有任何疑問，可以回覆此郵件！
+  
+  歡迎您再次到{{ shop_name }}購物，祝您購物愉快！

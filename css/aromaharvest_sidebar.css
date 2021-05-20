@@ -1,0 +1,36 @@
+ul.sidebar{
+    border: none;
+}
+ul.sidebar > li{
+    margin-bottom: 10px;
+}
+ul.sidebar button, ul.sidebar a{
+    border-bottom: none;
+}
+ul.sidebar ul.shelf_third a:before{
+    content: '>';
+    display: inline-block;
+    margin-right: 5px;
+    color: #8c8c7e;
+    opacity: 0.6;
+    transition-duration: .3s;
+}
+ul.sidebar ul.shelf_third a:hover:before{
+    margin-right: 10px;
+}
+ul.sidebar > li > .linklist.bt-toggle{
+    border-bottom: 1px solid #E2E2E2;
+}
+
+#index_sidebar_shelf_top > li:not(.logo) .shelf_third a, #index_sidebar_shelf_top > li:not(.logo) .shelf_third button{
+    background: #8c8c7e !important;
+}
+
+@media screen and (max-width: 992px){
+    ul.sidebar > li{
+        margin-bottom: 0;
+    }
+    ul.sidebar a{
+        border-bottom: 1px solid #E2E2E2;
+    }
+}

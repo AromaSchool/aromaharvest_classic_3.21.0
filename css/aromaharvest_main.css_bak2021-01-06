@@ -1,0 +1,688 @@
+*{
+    font-family: 'Noto Sans TC', '微軟正黑體',sans-serif;
+}
+/* 通用按鈕 */
+.btn_more{
+    position: relative;
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    transition-duration: .3s;
+    overflow: hidden;
+    z-index: 2;
+    cursor: pointer;
+}
+.btn_more:before{
+    content: '';
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition-duration: .3s;
+    z-index: -1;
+    opacity: 0;
+}
+.btn_more.dark{
+    background: #F0F0EF;
+    color: #8C8C7E;
+}
+.btn_more.dark:before{
+    background: #8c8c7e;
+}
+.btn_more.light{
+    background: #fff;
+    color: #8C8C7E;
+}
+.btn_more.light:before{
+    background: #8c8c7e;
+}
+.btn_more:hover{
+    text-decoration: none;
+}
+.btn_more:hover:before{
+    left: 0;
+    opacity: 1;
+}
+.btn_more:hover{
+    color: #fff;
+}
+
+/* 首頁-品牌故事 */
+.story_block{
+    position: relative;
+    text-align: center;
+    color: #3a3a3a;
+}
+.story_block .oil_1{
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    z-index: -1;
+}
+.story_block .oil_2{
+    position: absolute;
+    right: 3%;
+    bottom: 0;
+    z-index: -1;
+}
+.story_block .container{
+    margin-top: 50px;
+    padding-bottom: 80px;
+}
+.story_block h2{
+    font-size: 22px;
+    color: #8c8c7e;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+.story_block .story_box{
+    line-height: 1.8;
+}
+.story_block .story_box p{
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+/* 首頁-今天我想來點 */
+.make_your_day_block{
+    text-align: center;
+    background: #F6F6F6;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.make_your_day_block .title_block h2{
+    color: #8c8c7e;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.make_your_day_block .title_block span{
+    color: #3a3a3a;
+    font-size: 15px;
+    font-weight: 300;
+}
+.your_day_block{
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+.your_day_box{
+    display: inline-block;
+    position: relative;
+}
+.your_day_box .circle{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    transition-duration: .3s;
+}
+.your_day_box:hover .circle{
+    background: #f3e096;
+    width: 80px;
+    height: 80px;
+}
+.your_day_box img{
+    position: relative;
+    z-index: 2;
+}
+
+/* 首頁-產品簡介 */
+.product_intro_box{
+    display: flex;
+    align-items: center;
+    background: #EEEEF0;
+    color: #3A3A3A;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+.product_intro_box:nth-child(even){
+    flex-direction: row-reverse;
+}
+.product_intro_box .pd_bg{
+    width: 70%;
+    max-width: 1120px;
+}
+.product_intro_box .pd_bg img{
+    width: 100%;
+}
+.pd_block{
+    text-align: center;
+    margin: 0 100px;
+}
+.pd_title .num{
+    font-size: 18px;
+    font-weight: 600;
+}
+.pd_title .type{
+    font-size: 30px;
+}
+.pd_title .type_en{
+    font-size: 14px;
+    font-weight: 600;
+}
+.pd_sub_title{
+    font-size: 20px;
+    margin: 20px auto;
+}
+.pd_description{
+    font-size: 15px;
+    color: #6A6A6A;
+    margin-bottom: 35px;
+}
+.top_3{
+    position: relative;
+}
+.top_3 > span{
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    transform: translateX(-50%);
+    color: #8C8C7E;
+    font-size: 14px;
+    background: #EEEEF0;
+    padding: 0 12px;
+}
+.pd_top_block{
+    display: flex;
+    border: solid 1px #fff;
+    padding: 30px 30px 20px;
+    margin-bottom: 35px;
+}
+.pd_top_box{
+    position: relative;
+    padding: 10px;
+    z-index: 0;
+}
+.pd_top_box:before{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    z-index: -1;
+    transition-duration: .3s;
+}
+.pd_top_box:hover{
+    text-decoration: none;
+}
+.pd_top_box:hover:before{
+    opacity: 0.4;
+}
+.pd_top_box h5{
+    font-size: 15px;
+    font-weight: 400;
+    color: #3A3A3A;
+}
+.pd_top_box h5 span{
+    display: block;
+    font-size: 13px;
+    color: #6A6A6A;
+    font-weight: 300;
+    margin-top: 5px;
+}
+
+/* 首頁-精選文章 */
+.editor_picks_block{
+    position: relative;
+    color: #3A3A3A;
+    margin-top: 60px;
+}
+.editor_picks_block:before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 65%;
+    left: 0;
+    bottom: 0;
+    background: #F6F6F6;
+}
+.editor_picks_block .title_block h2{
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.editor_picks_block .title_block span{
+    font-size: 14px;
+    font-weight: 400;
+}
+.article_block{
+    display: flex;
+    margin: 50px 0;
+}
+.article_box{
+    position: relative;
+    color: #3A3A3A;
+    width: 25%;
+}
+.article_box:hover{
+    text-decoration: none;
+    color: #3A3A3A;
+}
+.article_box:nth-child(even){
+    top: 60px;
+}
+.article_box figure{
+    overflow: hidden;
+}
+.article_box img{
+    width: 100%;
+    transition-duration: .3s;
+}
+.article_box:hover img{
+    transform: scale(1.1);
+}
+#index .article_content{
+    margin: 15px;
+}
+.article_deco{
+    color: #8C8C7E;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+.article_title{
+    font-size: 15px;
+    margin: 8px 0;
+    font-weight: 500;
+}
+#index .article_content p{
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.editor_picks_block .btn_block {
+    text-align: right;
+    padding: 55px 0 45px;
+}
+
+/* 會員專區 */
+#membership_program{
+    color: #3a3a3a;
+    font-weight: 300;
+}
+#membership_program .title_block{
+    text-align: center;
+}
+#membership_program .title_block h1{
+    font-size: 30px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+#membership_program .title_block h2{
+    font-size: 26px;
+    font-weight: 300;
+    padding-top: 85px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+#membership_program .title_block span{
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+#membership_program hr{
+    margin: 0;
+    border-color: #8c8c7e;
+    opacity: 0.3;
+}
+
+/* 會員專區-會員新制分級辦法 */
+#membership_program .program_block .title_block{
+    text-align: left;
+}
+.program_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 120px 0;
+}
+.program_block figure{
+    margin: 0 10%;
+}
+.program_block figure img{
+    width: 100%;
+}
+.program_box{
+    width: 50%;
+}
+
+/* 會員專區-沐禾會員專屬禮遇 */
+.exclusive_offers_block{
+    text-align: center;
+    margin-bottom: 85px;
+}
+.offer_icon_block{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+    margin: 40px auto;
+}
+.offer_icon_box{
+    margin: 10px 40px;
+}
+.offer_icon_box figure img{
+    width: 100%;
+}
+.offer_icon_box h3{
+    font-size: 15px;
+    font-weight: 400;
+    color: #8c8c7e;
+}
+
+/* 會員專區-會員權益說明 */
+.benefit_block{
+    margin-bottom: 85px;
+}
+.grade_select_block{
+    font-size: 0;
+    margin: 40px 0 10px;
+    padding-left: 135px;
+}
+.grade_select_box{
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    padding: 10px;
+}
+.grade_select_box img{
+    width: 100%;
+    max-width: 61px !important;
+}
+.grade_select_box h4{
+    font-size: 16px;
+    font-weight: 400;
+}
+.grade_table{
+    font-size: 15px;
+}
+.grade_selected{
+    display: none;
+    text-align: center;
+    padding: 10px;
+    border-top: solid 2px #8C8C7E;
+}
+.grade_table table{
+    width: 100%;
+    border-top: solid 2px #8C8C7E;
+    border-bottom: solid 2px #8C8C7E;
+}
+.grade_table td{
+    border: solid 1px rgba(60, 10, 55, .1);
+}
+.grade_table .td_title{
+    min-width: 135px;
+    text-align: center;
+    background: #F6F6F6;
+}
+.grade_table tr:nth-child(even) .td_title{
+    background: #F1F1F1;
+}
+.grade_table .td_grade{
+    width: 25%;
+    padding: 10px;
+}
+.grade_table .td_grade ol{
+    padding-left: 15px;
+}
+.grade_table .td_grade span{
+    font-size: 14px;
+    color: #A2A2A2;
+}
+
+/* 會員專區-常見問與答 */
+.faqs_block{
+    background: #F6F6F6;
+    margin-bottom: 100px;
+}
+.member_qa_block{
+    padding: 35px;
+}
+.member_qa_box:nth-child(1){
+    border-top: solid 1px rgba(60, 10, 55, .1);
+}
+.member_qa_box{
+    border-bottom: solid 1px rgba(60, 10, 55, .1);
+}
+.member_qa_box .member_q{
+    padding: 20px;
+    cursor: pointer;
+}
+.member_qa_box .member_a{
+    display: none;
+    padding: 20px;
+    background: #FFF;
+}
+.member_qa_box .member_a .mobile{
+    display: none;
+}
+.member_qa_box .member_a img{
+    max-width: 100%;
+}
+.member_qa_box .member_a .ul_title{
+    display: block;
+    margin: 10px 0 5px;
+    margin-left: -25px;
+}
+.member_qa_box .member_a ul{
+    padding-left: 25px;
+    margin: 10px 0;
+}
+.member_qa_box .member_a a{
+    color: #8c8c7e;
+    font-weight: 400;
+}
+.member_qa_box .member_a a:hover{
+    color: #8c8c7e;
+}
+
+@media screen and (max-width: 1366px){
+    /* 首頁-產品簡介 */
+    .pd_block{
+        margin: 0 60px;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    /* 首頁-品牌故事 */
+    .story_block .oil_1{
+        width: 130px;
+    }
+    .story_block .oil_2{
+        width: 130px;
+    }
+    /* 首頁-產品簡介 */
+    .product_intro_box:nth-child(odd) .pd_block{
+        margin-left: 0;
+    }
+    .product_intro_box:nth-child(even) .pd_block{
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 992px){
+    /* 首頁-今天我想來點 */
+    .your_day_block{
+        flex-wrap: wrap;
+    }
+    .your_day_box{
+        width: calc(100% / 3);
+        margin-bottom: 30px;
+    }
+    /* 首頁-產品簡介 */
+    .product_intro_box{
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+        padding-top: 60px;
+        padding-bottom: 0px;
+    }
+    .product_intro_box:nth-child(odd) .pd_block{
+        margin: 0 15px;
+    }
+    .product_intro_box:nth-child(even) .pd_block{
+        margin: 0 15px;
+    }
+    .product_intro_box .pd_bg{
+        width: 100%;
+        max-width: initial;
+    }
+    /* 首頁-精選文章 */
+    .article_block{
+        flex-wrap: wrap;
+    }
+    .article_box{
+        width: 50%;
+        margin-bottom: 20px;
+    }
+    /* 會員專區-會員新制分級辦法 */
+    .program_block{
+        flex-wrap: wrap;
+        margin: 80px 0;
+    }
+    .program_block figure {
+        margin: 0;
+        margin-bottom: 60px;
+    }
+    .program_block figure img{
+        max-width: 250px;
+    }
+    #membership_program .program_block .title_block{
+        text-align: center;
+    }
+    .program_box {
+        width: 100%;
+        text-align: center;
+    }
+    /* 會員專區-沐禾會員專屬禮遇 */
+    .offer_icon_box {
+        margin: 10px 25px;
+    }
+    /* 會員專區-會員權益說明 */
+    .grade_select_block{
+        padding: 0;
+    }
+    .grade_selected{
+        display: block;
+    }
+    .grade_select_box{
+        opacity: 0.3;
+        cursor: pointer;
+    }
+    .grade_select_box.active{
+        opacity: 1;
+    }
+    .grade_table .td_title{
+        width: 40%;
+        min-width: 100px;
+    }
+    .grade_table .td_grade{
+        width: 60%;
+    }
+    /* 會員專區-常見問與答 */
+    .member_qa_box .member_a .web{
+        display: none;
+    }
+    .member_qa_box .member_a .mobile{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px){
+    /* 首頁-品牌故事 */
+    .story_block br{
+        display: none;
+    }
+    /* 會員專區-會員新制分級辦法 */
+    .program_content br{
+        display: none;
+    }
+    /* 會員專區-沐禾會員專屬禮遇 */
+    .offer_icon_block{
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 640px){
+    /* 首頁-品牌故事 */
+    .story_block .container{
+        padding-bottom: 120px;
+    }
+    .story_block .oil_1{
+        width: 90px;
+    }
+    .story_block .oil_2{
+        width: 90px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    /* 首頁-產品簡介 */
+    .pd_top_block{
+        padding: 10px;
+    }
+    .pd_top_box img{
+        width: 100%;
+    }
+    /* 會員-常見問與答 */
+    .faqs_block{
+        padding-bottom: 20px;
+    }
+    .member_qa_block{
+        padding: 20px;
+    }
+    .member_qa_box .member_q{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 512px){
+    /* 首頁-今天我想來點 */
+    .your_day_box{
+        width: calc(100% / 2);
+    }
+    /* 首頁-精選文章 */
+    .editor_picks_block{
+        margin-top: 40px;
+    }
+    .editor_picks_block .title_block{
+        text-align: center;
+    }
+    .article_block{
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .article_box{
+        width: 100%;
+    }
+    .article_box:nth-child(even) {
+        top: 0;
+    }
+    #index .article_content{
+        margin: 0;
+    }
+    .editor_picks_block .btn_block{
+        padding-top: 0;
+    }
+}

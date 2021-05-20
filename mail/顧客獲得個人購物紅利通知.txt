@@ -1,0 +1,11 @@
+親愛的 {{ customer.name }}：
+
+恭喜您已獲得訂單紅利點數（購物金）共 {{ bonus.points | round }} 點。
+
+使用說明：
+此紅利點數（購物金）即日起即可使用，將在 {{ bonus.deadline }} 到期。
+
+歡迎回到 {{ shop.url }} 參觀選購！
+
+{{ shop.name }}
+敬上

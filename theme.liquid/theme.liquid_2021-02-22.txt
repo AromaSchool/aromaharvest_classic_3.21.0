@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-tw" style="height:100%;">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="{{ shop.name }}" />
+
+    <!-- og tag -->
+    {% if template == 'index' %}
+      <meta name="keywords" content="{{ settings.keywords }}" />
+      <meta name="description" content="{{ settings.shop_description }}" />
+      <meta property="og:title" content="{{ shop.name }}" />
+      <meta property="og:url" content="{{ shop.url }}" />
+      <meta property="og:type" content="product.group" />
+      <meta property="og:description" content="{{ settings.shop_description }}" />
+    {% elsif template == 'collection' %}
+      <meta property="og:title" content="{{ collection.title }}" />
+      <meta property="og:url" content="{{ shop.url }}{{ collection.url }}" />
+      <meta property="og:type" content="product.group" />
+      <meta property="og:description" content="{{ page_description }}" />
+    {% elsif template == 'product' %}
+      <meta property="og:title" content="{{ product.title }}" />
+      <meta property="og:url" content="{{ shop.url }}{{ product.url }}" />
+      <meta property="og:type" content="product" />
+      <meta property="og:description" content="{{ page_description }}" />
+    {% elsif template == 'article' %}
+      <meta property="og:title" content="{{ article.title }}" />
+      <meta property="og:url" content="{{ shop.url }}{{ article.url }}" />
+      <meta property="og:type" content="article" />
+      <meta property="og:description" content="{{ article.content | strip_html | truncate: 20 }}" />
+    {% endif %}
+
+    <!-- og image -->
+    {% if template == 'collection' and collection.pictures[0] %}
+      <meta property="og:image" content="https:{{ collection.pictures[0] }}" />
+    {% elsif template == 'product' %}
+      <meta property="og:image" content="https:{{ product.featured_image | product_img_url: 'medium' }}" />
+    {% elsif template == 'article' and article.cover_image['500x500#'] %}
+      <meta property="og:image" content="https:{{ article.cover_image['500x500'] }}" />
+    {% else %}
+      <meta property="og:image" content="https:{{ 'img/og_image.jpg' | asset_url }}" />
+    {% endif %}
+
+    <title>
+      {% if template == 'index' %}
+        {{ shop.name }} | {{ page_title }}
+      {% elsif template == '404' %}
+        404 頁面不存在 | {{ shop.name }}
+      {% else %}
+        {{ page_title }} | {{ shop.name }}
+      {% endif %}
+    </title>
+    
+    <!--Google Search Console-->
+    <meta name="google-site-verification" content="G40cvTY-z2f_rLMohzTsGjki05SWUYTIOJU31m6pyto" />
+
+    <link rel="shortcut icon" href="{{ 'img/favicon.png' | asset_url }}" type="image/x-icon" />
+
+    <!-- for vendor -->
+    {{ 'css/beta_theme/vendor.css' | asset_url | stylesheet_tag }}
+
+    <!-- for navbar -->
+    {{ 'css/beta_theme/navbar.css' | asset_url | stylesheet_tag }}
+    {{ 'css/navbar.css' | asset_url | stylesheet_tag }}
+    {{ 'css/beta_theme/sidebar.css' | asset_url | stylesheet_tag }}
+
+    <!-- theme assets -->
+    {{ 'css/beta_theme/main.css' | asset_url | stylesheet_tag }}
+
+    <!-- for vendor -->
+    {{ 'js/vendor.js' | asset_url | script_tag }}
+    
+    <!--AromaHarvest Customized-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/aromaharvest_main.css?202101073">
+    <!--<link rel="stylesheet" href="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/aromaharvest_navbar.css?20201217">-->
+    <link rel="stylesheet" href="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/aromaharvest_sidebar.css?202012224">
+    <link rel="stylesheet" href="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/aromaharvest_product.css?20210127">
+    <link rel="stylesheet" href="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/aromaharvest_collection.css?202101051">
+    
+    <!--sharethis-->
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5fb486eeb418e40013a8a81e&product=inline-share-buttons' async='async'></script>
+    
+    <!--MailChimp-->
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/e9a8258a8bc9ce2b2af2b979b/160099f043ad3df25ad7f36d8.js");</script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body style="display: flex; flex-direction: column;">
+    <!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v9.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+          
+      </script>
+
+    <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="107198344532068"
+        theme_color="#f3e096"
+        logged_in_greeting="Hi! How can we help you? :)"
+        logged_out_greeting="Hi! How can we help you? :)"
+        greeting_dialog_display="hide">
+      </div>
+      
+    <!-- Navigation -->
+    {% include 'navbar', linklist_name: settings.main_nav %}
+
+    <!-- template -->
+    <div id="template" style="flex:1 0 auto;">
+      {{ content_for_layout }}
+    </div>
+
+    <!-- Footer -->
+    {% include 'footer' %}
+
+    <!-- Fast-Events -->
+    {% include 'fast_events' %}
+
+    <!-- gototop -->
+    <div id="gototop">
+      <a href="javascript:void(0)">
+        <i class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+    <!-- ajaxloading -->
+    <div id="ajaxloading">
+      <div class="ajaxbody">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="73.4" height="73.4" viewBox="0 0 73.4 73.4">
+          <circle class="circle" fill="none" stroke="#898989" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="36.7" cy="36.7" r="35.2"/>
+          <polyline class="success_path" fill="none" stroke="#898989" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="23.7,36.8 32.4,45.4 49.7,28 "/>
+          <path class="success_icon" fill="#898989" d="M32.5,46.9c-0.4,0-0.8-0.2-1.1-0.4l-8.6-8.6c-0.6-0.6-0.6-1.5,0-2.1s1.5-0.6,2.1,0l7.5,7.5L48.6,27c0.6-0.6,1.5-0.6,2.1,0s0.6,1.5,0,2.1L33.5,46.5C33.2,46.7,32.9,46.9,32.5,46.9L32.5,46.9z"/>
+          <line class="fail_path" fill="none" stroke="#898989" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="26.6" y1="26.6" x2="46.8" y2="46.8"/>
+          <line class="fail_path" fill="none" stroke="#898989" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="46.8" y1="26.6" x2="26.6" y2="46.8"/>
+          <path class="fail_icon" fill="#898989" d="M38.7,36.7l9.1-9.1c0.6-0.6,0.6-1.5,0-2.1s-1.5-0.6-2.1,0l-9.1,9.1l-9.1-9.1c-0.6-0.6-1.5-0.6-2.1,0s-0.6,1.5,0,2.1l9.1,9.1l-9.1,9.1c-0.6,0.6-0.6,1.5,0,2.1c0.3,0.3,0.7,0.4,1.1,0.4s0.8-0.1,1.1-0.4l9.1-9.1l9.1,9.1c0.3,0.3,0.7,0.4,1.1,0.4s0.8-0.1,1.1-0.4c0.6-0.6,0.6-1.5,0-2.1L38.7,36.7z"/>
+        </svg>
+        <div class="success_msg title">已加入購物車</div>
+        <div class="success_update_msg title">已更新購物車</div>
+        <div class="fail_msg title">網路異常，請重新整理</div>
+      </div>
+    </div>
+  </body>
+
+  {% include 'liquid_helper' %}
+  {{ 'js/sub_vendor.js' | asset_url | script_tag }}
+  {{ 'js/theme_helper.js' | asset_url | script_tag }}
+
+  <!-- for Google Analytics Enhanced Ecommerce -->
+  {{ 'theme/globalAnalysis.js' | cdn_asset_url: 'global' | script_tag }}
+
+  <!-- theme assets -->
+  {{ 'js/main.js' | asset_url | script_tag }}
+  {{ 'js/theme.js' | asset_url | script_tag }}
+
+  <!-- theme customized main css -->
+  {{ 'css/theme_main.css' | asset_url | stylesheet_tag }}
+
+  <!-- for cache -->
+  {{ 'js/cacheable.js'  | asset_url | script_tag }}
+
+</html>

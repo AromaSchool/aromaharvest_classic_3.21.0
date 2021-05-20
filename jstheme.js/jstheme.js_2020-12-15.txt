@@ -1,0 +1,79 @@
+// 加入收藏
+function add_wish_list(btn){
+  $(btn).click(function(e){
+    var product_variant_id = $(this).siblings('.product-variant-id').val();
+    $.ajax({
+      method: 'POST',
+      url: '/tracking_items',
+      dataType: 'json',
+      data: {product_variant_id: product_variant_id},
+      success:function(response){
+        if(response.message) window.msg(response.message, 'success').show();
+        if(response.error) window.msg(response.error, 'error').show();
+        if(response.info) window.msg(response.info, 'info').show();
+        if(response.success === false) window.location = '/account/login';
+      }
+    });
+  });
+}
+// 刪除收藏
+function delete_wish_list(btn){
+  $(btn).click(function(){
+    var product_variant_id = $(this).siblings('.product-variant-id').val();
+    $(this).parents(".product").fadeOut().remove()
+    $.ajax({
+      method: 'delete',
+      url: '/tracking_items/' + String(product_variant_id),
+      dataType: 'json',
+      success:function(response){
+        if(response.message) window.msg(response.message, 'success').show();
+        if(response.error) window.msg(response.error, 'error').show();
+        if(response.info) window.msg(response.info, 'info').show();
+        if(response.success === false) window.location = '/account/login';
+      }
+    });
+  });
+}
+
+$.fn.addCustomScrollbar = function() {
+  var self = this;
+  var removeTimeout;
+  $(self).scroll(function(e){
+    $(self).addClass('scrolling')
+    clearTimeout(removeTimeout)
+    removeTimeout = setTimeout(function() {
+      $(self).removeClass("scrolling");
+    }, 1800);
+  })
+}
+
+$.fn.isInViewport = function() {
+  var elementTop = $(this).offset().top;
+  var elementBottom = elementTop + $(this).outerHeight();
+  var viewportTop = $(window).scrollTop();
+  var viewportBottom = viewportTop + $(window).height();
+  return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
+$(document).ready(function(){
+
+  // 初始化 LazyLoad
+  var imgLazyLoad = new LazyLoad({
+    elements_selector: ".img-lazy",
+  });
+  var bgLazyLoad = new LazyLoad({
+    elements_selector: ".bg-lazy",
+  });
+
+  // 加入最愛
+  add_wish_list($('.btn_love'));
+  delete_wish_list($('.btn_delete_love'));
+
+  // reset_form
+  $(".reset_form").click(function(e){
+    $(e.target).closest("form").find("input").val("");
+  });
+
+  // add scroll event to .custom-scrollbar
+  $('.customer-scrollbar').addCustomScrollbar()
+});

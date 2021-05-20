@@ -1,0 +1,27 @@
+#collection .collection_products .collection_title .section-heading{
+    color: #3A3A3A !important;
+    border-left: none;
+    border-bottom: solid 1px #CCC;
+    padding-left: 0;
+    padding-bottom: 5px;
+    margin-right: 30px;
+}
+#collection .collection_products .products_content .product_slogan{
+    color: #8c8c7e !important;
+    font-weight: 300;
+    margin: 0 0 5px 0 !important;
+}
+#collection .collection_products .products_content .product_price .price{
+    color: #e55555 !important;
+}
+
+@media screen and (max-width: 567px){
+    #collection .collection_products .collection_title .section-heading{
+        margin-right: 0;
+        width: 100%;
+    }
+    #collection .collection_products.square_prods .product .product_title{
+        height: 72px !important;
+        line-height: 1.4;
+    }
+}

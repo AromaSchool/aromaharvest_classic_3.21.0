@@ -1,0 +1,12 @@
+ul.sidebar{
+    border: none;
+}
+ul.sidebar > li{
+    margin-bottom: 10px;
+}
+ul.sidebar button, ul.sidebar a{
+    border-bottom: none;
+}
+ul.sidebar > li > .linklist.bt-toggle{
+    border-bottom: 1px solid #E2E2E2;
+}

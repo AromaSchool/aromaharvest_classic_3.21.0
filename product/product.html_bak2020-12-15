@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沐禾 AromaHarvest</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="../css/aromaharvest_product.css">
+</head>
+<body id="product">
+    <div class="container">
+        <div class="desc_body">
+            <div id="ckeditor">
+                <div id="desc_section_1" class="desc_section">
+                    <h5 class="section-heading">商品介紹</h5>
+                    <div class="ckeditor">
+                        <div class="pd_intro_block">
+                            <div class="pd_intro_box">
+                                <div class="pd_intro_title">
+                                    <div class="pd_slogan">沒有它，你的精油櫃就不完整</div>
+                                    <span>－純正薰衣草精油</span>
+                                </div>
+                                <p>薰衣草精油，舒緩溫和的草香，香氣宜人。<br>
+                                   在精油中薰衣草精油用途最廣，氣氛最普及，不管是芳療新手還是經驗豐富的芳療專家，薰衣草精油都是精油櫃中不可或缺的存在。
+                                </p>
+                                <a href="/blogs/配方靈感/tagged/純正薰衣草精油">點我進一步認識純正薰衣草精油 ></a>
+                            </div>
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_intro_1.jpg" alt="純正薰衣草精油">
+                            </figure>
+                        </div>
+                        <div class="pd_section_block">
+                            <div class="pd_section_box">
+                                <div class="pd_section_title">
+                                    <i class="fas fa-leaf"></i>
+                                    為什麼你需要純正薰衣草精油？
+                                </div>
+                                <ul>
+                                    <li># 皮膚保養及修護，舒緩偶發肌膚過敏</li>
+                                    <li># 鎮靜安撫、緩解肌肉緊張, 改善肩頸酸痛</li>
+                                    <li># 平穩心情，緩和壓力，提升睡眠品質</li>
+                                </ul>
+                            </div>
+                            <div class="pd_section_box">
+                                <div class="pd_section_title">
+                                    <i class="fas fa-street-view"></i>
+                                    哪些人最需要純正薰衣草精油？
+                                </div>
+                                <ul>
+                                    <li># 想要一瓶萬用的精油!!</li>
+                                    <li># 翻來覆去總是睡不著，一睡著又很容易醒來...</li>
+                                    <li># 皮膚一直過敏好不了，找不到適合的保養品</li>
+                                    <li># 長期姿勢不良，肌肉緊繃好痠痛</li>
+                                </ul>
+                            </div>
+                            <div class="pd_section_box">
+                                <div class="pd_section_title">
+                                    <i class="fas fa-magic"></i>
+                                    這樣用最好用
+                                </div>
+                                <div class="pd_use_box">
+                                    <div class="use_title">按摩</div>
+                                    <ul class="use_content">
+                                        <li># 肌肉痠痛：純正薰衣草+甜馬鬱蘭+檸檬</li>
+                                        <li># 提升睡眠品質：純正薰衣草+苦橙葉+佛手柑</li>
+                                        <li># 舒緩敏感肌膚：純正薰衣草+乳香+羅馬洋甘菊</li>
+                                        <li># 腸胃不適：純正薰衣草+甜羅勒+甜橙</li>
+                                        <li># 促進體內循環：純正薰衣草+葡萄柚+杜松+薑</li>
+                                    </ul>
+                                </div>
+                                <div class="pd_use_box">
+                                    <div class="use_title">擴香<br>嗅吸</div>
+                                    <ul class="use_content">
+                                        <li># 調整心情，提升幸福感：純正薰衣草+甜橙+天竺葵+佛手柑</li>
+                                        <li># 空間除菌除臭：純正薰衣草+檸檬+綠花白千層</li>
+                                        <li># 保養呼吸道：純正薰衣草+澳洲尤加利+月桂</li>
+                                    </ul>
+                                </div>
+                                <div class="pd_use_box">
+                                    <div class="use_title">沐浴<br>臉部保養<br>身體保養</div>
+                                    <ul class="use_content">
+                                        <li># 可少量塗抹於肌膚局部泛紅處，但頻率不可過高</li>
+                                        <li># 與基底油調配成1~2%濃度可塗抹於臉部肌膚，3%濃度則建議只能使用於身體</li>
+                                        <li># 與蘆薈膠調配成成1~2%濃度可塗抹於臉部肌膚，3%濃度則建議只能使用於身體。</li>
+                                        <li># 不可將精油直接滴入水中泡澡</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pd_section_box">
+                                <div class="pd_section_title">
+                                    <i class="far fa-question-circle"></i>
+                                    常見問題
+                                </div>
+                                <div class="pd_question_block">
+                                    <div class="pd_question_box">
+                                        <div class="q">Q1：可以天天使用精油嗎？</div>
+                                        <div class="a">A1：雖然精油可以天天使用，但不宜長期使用同一種精油，因為可能會累積過多在體內，會有不良影響，且使用太頻繁而使身體對這個精油產
+                                        生鈍化現象，而失去療效。</div>
+                                    </div>
+                                    <div class="pd_question_box">
+                                        <div class="q">Q2：可以天天使用精油嗎？</div>
+                                        <div class="a">A2：雖然精油可以天天使用，但不宜長期使用同一種精油，因為可能會累積過多在體內，會有不良影響，且使用太頻繁而使身體對這個精油產
+                                        生鈍化現象，而失去療效。</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="desc_section_2" class="desc_section">
+                    <h5 class="section-heading">注意事項</h5>
+                    <div class="ckeditor">
+                        <ol class="precaution_block">
+                            <li>精油不可食用</li>
+                            <li>未經稀釋不可直接大量使用於皮膚上</li>
+                            <li>不可直接滴入水中泡澡</li>
+                            <li>請存放於室內，勿照射太陽、勿存放於冰箱或浴室</li>
+                            <li>使用時請遠離火源</li>
+                            <li>嬰兒不建議使用精油</li>
+                            <li>孕婦若要使用請諮詢醫生建議</li>
+                            <li>請於期限內使用完畢</li>
+                        </ol>
+                    </div>
+                </div>
+                <div id="desc_section_3" class="desc_section">
+                    <h5 class="section-heading">運送方式</h5>
+                    <div class="ckeditor">
+                        <div class="ship_block">
+                            <div class="claim">目前僅提供宅配通到府配送服務</div>
+                            <div class="ship_box">
+                                <div class="ship_title">若您購買純露>>>適用低溫物流配送</div>
+                                台灣本島運費：<br>
+                                商品應支付總金額未滿 3,000 元時，每次運費以 150 元計<br>
+                                商品應支付總金額超過 3 ,000 元 ( 含 ) 未滿 5,000 元時，每次運費以 50 元計<br>
+                                商品應支付總金額超過 ( 含 ) 5,000 元時，每次運費以 0 元計。<br>
+                                離島（澎湖、金門、馬祖地區）運費<br>
+                                商品應支付總金額未滿 3,000 元時，每次運費以260 元計<br>
+                                商品應支付總金額超過 3 ,000 元 ( 含 ) 未滿 6,000 元時，每次運費以 160 元計<br>
+                                商品應支付總金額超過 6 ,000 元 ( 含 ) 未滿 8,000 元時，每次運費以60 元計<br>
+                                商品應支付總金額超過 ( 含 ) 8,000 元時，每次運費以 0 元計。
+                            </div>
+                            <div class="ship_box">
+                                <div class="ship_title">若您購買精油、基底油>>>適用常溫物流配送</div>
+                                台灣本島運費：<br>
+                                商品應支付總金額未滿 3,000 元時，每次運費以 100 元計。<br>
+                                商品應支付總金額超過 3 ,000 元 ( 含 ) 免運費。<br>
+                                離島（澎湖、金門、馬祖地區）運費：<br>
+                                商品應支付總金額未滿 3,000 元時，每次運費以 220 元計<br>
+                                商品應支付總金額超過 3 ,000 元 ( 含 ) 未滿 5,000 元時，每次運費以 120 元計<br>
+                                商品應支付總金額超過 ( 含 ) 5,000 元時，每次運費以 0 元計。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

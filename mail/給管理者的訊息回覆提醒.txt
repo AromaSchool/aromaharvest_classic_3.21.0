@@ -1,0 +1,13 @@
+{{ shop.name }},
+
+今天({{ date | date: "%Y-%m-%d %H:%M" }}), {{ customer.name }} 新增了留言.
+
+留言內容：
+
+{{ message_comment }}
+
+您可以通過下面鏈接：
+
+  {{ shop.message_posts_url }}
+
+回覆留言

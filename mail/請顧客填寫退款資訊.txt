@@ -1,0 +1,12 @@
+{% capture string_with_newlines %}
+親愛的 {{ customer.name }},
+
+您在{{ shop.name }}所訂購之訂單商品，
+未於超商取貨期限內完成取貨，目前訂單已進行退貨流程。
+請您點擊此連結<a href="{{ pay_url }}">{{ name }}</a>前往訂單頁面填寫退款資訊，以利後續退款作業
+
+謝謝！
+{{ shop.name }}
+<a href="{{ shop.url }}">{{ shop.url }}</a>
+{% endcapture %}
+{{ string_with_newlines | newline_to_br }}

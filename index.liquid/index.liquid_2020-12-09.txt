@@ -1,0 +1,60 @@
+<div id="index">
+  {% if settings.display_main_slider %}
+  	{% include '_main_slider' %}
+  {% endif %}
+
+  {% include '_index_block' %}
+
+  {% include '_index_banner', session: 1 %}
+
+  {% include '_index_banner', session: 2 %}
+
+  {% include '_index_banner', session: 3 %}
+
+  {% if settings.display_product_item_1 %}
+    {% include '_product_item',
+      collection: collections[settings.product_item_1],
+      title:  settings.product_item_1_title,
+      slogan: settings.product_item_1_slogan,
+      limit:  settings.product_item_1_limit
+    %}
+  {% endif %}
+
+  {% if settings.display_product_item_2 %}
+    {% include '_product_item',
+      collection: collections[settings.product_item_2],
+      title:  settings.product_item_2_title,
+      slogan: settings.product_item_2_slogan,
+      limit:  settings.product_item_2_limit
+    %}
+  {% endif %}
+
+  {% include '_index_banner', session: 4 %}
+
+
+  {% if settings.display_product_item_3 %}
+    {% include '_product_item',
+      collection: collections[settings.product_item_3],
+      title:  settings.product_item_3_title,
+      slogan: settings.product_item_3_slogan,
+      limit:  settings.product_item_3_limit
+    %}
+  {% endif %}
+
+  {% if settings.display_video_block %}
+    {% include '_index_video_block' %}
+  {% endif %}
+
+  {% include '_index_full_banner', session: 1 %}
+
+  {% include '_index_square' %}
+
+  {% include '_index_brand' %}
+
+  {{ 'css/index.css' | asset_url | stylesheet_tag }}
+
+  <!-- for _product_item -->
+  {% include 'new_addcart_modal' %}
+  {{ 'js/new_cart.js' | asset_url | script_tag }}
+  {{ 'js/product_item.js' | asset_url | script_tag }}
+</div>

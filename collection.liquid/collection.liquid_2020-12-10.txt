@@ -1,0 +1,356 @@
+{% include 'breadcrumb', url: "home/collection" %}
+
+<div id="collection">
+  <div class="container">
+    <div class="row">
+      <!-- 群組簡述 start -->
+      {% if collection.description %}
+        <div class="col-md-12">
+          <div id="ckeditor" class="collection_description">
+            <span class="ckeditor">
+              {{ collection.description }}
+            </span>
+          </div>
+        </div>
+      {% endif %}
+      <!-- 群組簡述 end -->
+      {% if collection.class_name == "SpecialCollection" %}
+        <!-- nn 群組頁 -->
+        <div class="col-md-12">
+          {% include 'nn_collection' %}
+          {{ 'shop/price_validation.js' | cdn_asset_url: 'global' | script_tag }}
+          {{ 'js/nn_collection.js'  | asset_url | script_tag }}
+          {{ 'css/beta_theme/nn_collection.css' | asset_url | stylesheet_tag }}
+        </div>
+      {% else %}
+        <!-- 一般群組頁 -->
+        <!-- 側邊列表 start -->
+        {% if settings.collection_sidebar != '' %}
+          <div class="col-md-3 hidden-md">
+            {% if settings.collection_sidebar == 'all' %}
+              <!-- 側邊列表顯示所有群組 -->
+              {% include 'side_menu', linklist_name: settings.collection_sidebar, session: 'collection_all_menu', set_open: settings.collection_sidebar_set_open %}
+            {% else %}
+              {% include 'side_menu', linklist_name: settings.collection_sidebar, session: 'collection_menu', set_open: settings.collection_sidebar_set_open %}
+            {% endif %}
+          </div>
+        {% endif %}
+        <!-- 側邊列表 end -->
+        <!-- 群組商品 start -->
+        <div class="{%if settings.collection_sidebar != ''%} col-lg-9 {% endif %} col-sm-12 collection_products square_prods">
+          {% if settings.display_product_images_color and settings.discount_product_images_color_expand %}
+          <!-- 色票展開 -->
+            <div class="collection_title clear-fix">
+              <div class="section-heading">{{ collection.title | escape }}</div>
+              <div class="products_setting">
+                {% include '_product_sort_by' %}
+                <div class="products_info">
+                  <p>共 {{collection.products_variants.size}} 件商品</p>
+                  <div class="btn-group product_layout" role="group" aria-label="First group">
+                    <button type="button" class="btn square_prods" value="square_prods"><i class="fas fa-th-large"></i></button>
+                    <button type="button" class="btn line_prods" value="line_prods"><i class="fas fa-list"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% paginate collection.products_variants by settings.collection_pagination_limit %}
+              <div class="products_content">
+                {% for variant in collection.products_variants %}
+                  {% assign color = variant.color %}
+                  {% assign product = variant.product %}
+                  {% product_tag variant: variant, product: product %}
+                    {% if settings.display_discount_price_slogan %}
+                      {% if variant.compare_at_price > variant.price %}
+                        <div class="onsale" style="background-image: url('{{'img/onsale_icon.png' | asset_url}}');"></div>
+                      {% endif %}
+                    {% endif %}
+                    <div class="product_image">
+                      <a class="productClick img-flex" href="{{ product.url }}"
+                        data-brand="{{ product.vendor | escape }}"
+                        data-category="{{ product.product_type | escape }}"
+                        data-id="{{ product.id }}"
+                        data-list="{{ collection.title | escape }}"
+                        data-name="{{ product.title | escape }}"
+                        data-position="{{ forloop.index }}"
+                        data-price="{{ product.price }}"
+                        data-variant="{{ color }}">
+                        <img class="img-lazy" src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ variant.image | product_img_url: 'grande' }}" alt="product_image" width="250" height="250">
+                      </a>
+                    </div>
+                    <div class="product_title">
+                      <a class="productClick" href="{{ product.url }}"
+                        data-brand="{{ product.vendor | escape }}"
+                        data-category="{{ product.product_type | escape }}"
+                        data-id="{{ product.id }}"
+                        data-list="{{ collection.title | escape }}"
+                        data-name="{{ product.title | escape }}"
+                        data-position="{{ forloop.index }}"
+                        data-price="{{ product.price }}"
+                        data-variant="{{ color }}">
+                        {{ product.title | escape }} - {{color}}
+                      </a>
+                    </div>
+                    <div class="product_brief">
+                      {{ product.brief | strip_html | limited_string: 100 }}
+                    </div>
+                    {% if settings.display_product_total_sold %}
+                      <div class="product_sold">
+                        已銷售：{{ product.total_sold }}
+                      </div>
+                    {% endif %}
+                    <div class="product_price">
+                      {% assign position = product.first_price_of_variants_color[variant.color_position] %}
+                      <span class="price">{{ product.existing_variants[position].price | money_with_dp | money_without_dp_zero }}</span>
+                      {% if product.existing_variants[position].compare_at_price > product.existing_variants[position].price %}
+                        <del class="compare_at_price">{{ product.existing_variants[position].compare_at_price | money_with_dp | money_without_dp_zero }}</del>
+                      {% endif %}
+                    </div>
+                    <div class="product_love">
+                      <input type="hidden" class="product-variant-id" value="{{ variant.id }}">
+                      <a class="btn_love scupio-add-wishlist"
+                         data-itemid="{{ variant.sku }}"
+                         data-cid="{{ collection.id }}"
+                         data-cname="{{ collection.class_name}}">
+                        <i class="fas fa-heart"></i>加入最愛
+                      </a>
+                    </div>
+                    {% assign variant_sizes = product.color_size[color] | split: "|" %}
+                    {% assign can_sale = false %}
+                    {% for size in variant_sizes %}
+                      {% assign size_info = size | split: ',' %}
+                      {% assign variant_quantity = size_info[4] %}
+                      {% assign variant_inventory_policy = size_info[6] %}
+                      {%if variant_quantity != '0'  or variant_inventory_policy == "continue" %}
+                        {% assign can_sale = true %}
+                      {%endif%}
+                    {%endfor%}
+                    <div class="product_btn">
+                      <div class="product_link">
+                        <a class="btn productClick" href="{{ product.url }}"
+                          data-brand="{{ product.vendor | escape }}"
+                          data-category="{{ product.product_type | escape }}"
+                          data-id="{{ product.id }}"
+                          data-list="{{ collection.title | escape }}"
+                          data-name="{{ product.title | escape }}"
+                          data-position="{{ forloop.index }}"
+                          data-price="{{ product.price }}">
+                          <i class="fas fa-search"></i>
+                          <span class="text">查看商品</span>
+                        </a>
+                      </div>
+                      {% if shop.cart_enabled %}
+                        {%if can_sale %}
+                          <button type="button" class="btn btn-cart" data-toggle="modal" data-target="#addcart-Modal"
+                            data-brand="{{ product.vendor | escape }}"
+                            data-handle="{{ product.handle }}"
+                            data-collection="{{ product.collections[0].id }}"
+                            data-category="{{ product.product_type | escape }}"
+                            data-color="{{ color }}"
+                            data-id="{{ product.id }}"
+                            data-list="{{ collection.title | escape }}"
+                            data-name="{{ product.title | escape }}"
+                            data-photo="{{ variant.image | product_img_url: 'grande' }}"
+                            data-position="{{ forloop.index }}"
+                            data-price="{{ product.price }}"
+                            data-spread-size="{{ product.color_size[color] }}"
+                            data-cid="{{ collection.id }}"
+                            data-cname="{{ collection.class_name }}"
+                            data-sku="{{ variant.sku }}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="text">加入購物車</span>
+                          </button>
+                        {% else %}
+                          <button type="button" class="btn btn-soldout">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="text">商品已售完</span>
+                          </button>
+                        {% endif %}
+                      {%endif%}
+                    </div>
+                  {% endproduct_tag %}
+                {% endfor %}
+              </div>
+              {% include 'pagination' %}
+            {% endpaginate %}
+          {% else %}
+          <!-- 色票不展開 -->
+            <div class="collection_title clear-fix">
+              <div class="section-heading">{{ collection.title | escape }}</div>
+              <div class="products_setting">
+                {% include '_product_sort_by' %}
+                <div class="products_info">
+                  <p>共 {{collection.products.size}} 件商品</p>
+                  <div class="btn-group product_layout" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary square_prods" value="square_prods"><i class="fas fa-th-large"></i></button>
+                    <button type="button" class="btn btn-secondary line_prods" value="line_prods"><i class="fas fa-list"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% paginate collection.products by settings.collection_pagination_limit %}
+              <div class="products_content">
+                {% assign products = collection.products | price_with_discount %}
+                {% for product in products %}
+                  {% assign variant = product.first_variant %}
+                  {% if product.slogan != '' and settings.product_slogan_display %}
+                    {% assign class_name = "with_slogan" %}
+                  {% endif %}
+                  {% product_tag variant: variant, product: product, class_name: class_name %}
+                    {% if settings.display_discount_price_slogan %}
+                      {% if variant.compare_at_price > variant.price %}
+                        <div class="onsale" style="background-image: url('{{'img/onsale_icon.png' | asset_url}}');"></div>
+                      {% endif %}
+                    {% endif %}
+                    <div class="product_image">
+                      <a class="productClick img-flex" href="{{ product.url }}"
+                        data-brand="{{ product.vendor | escape }}"
+                        data-category="{{ product.product_type | escape }}"
+                        data-id="{{ product.id }}"
+                        data-name="{{ product.title | escape }}"
+                        data-position="{{ forloop.index }}"
+                        data-price="{{ product.price }}"
+                        data-list="{{ collection.title | escape }}">
+                        <img class="img-lazy" src="{{ 'img/img_loading.svg' | asset_url }}" data-src="{{ product.featured_image | product_img_url: 'grande' }}" alt="product_image" width="250" height="250">
+                      </a>
+                    </div>
+                    {% if settings.product_slogan_display %}
+                      <div class="product_slogan"{% unless product.slogan == '' %} style="background: #f9f9f9;"{% endunless %}>
+                        <span>{{ product.slogan }}</span>
+                      </div>
+                    {% endif %}
+                    <div class="product_title">
+                      <a class="productClick" href="{{ product.url }}"
+                        data-brand="{{ product.vendor | escape }}"
+                        data-category="{{ product.product_type | escape }}"
+                        data-id="{{ product.id }}"
+                        data-list="{{ collection.title | escape }}"
+                        data-name="{{ product.title | escape }}"
+                        data-position="{{ forloop.index }}"
+                        data-price="{{ product.price }}">
+                        {{ product.title | escape }}
+                      </a>
+                    </div>
+                    <div class="product_brief">
+                      {{ product.brief | strip_html | limited_string: 100 }}
+                    </div>
+                    {% if settings.display_product_total_sold %}
+                      <div class="product_sold">
+                        已銷售：{{ product.total_sold }}
+                      </div>
+                    {% endif %}
+                    <div class="product_price">
+                      <span class="price">{{ variant.price | money_with_dp | money_without_dp_zero }}</span>
+                      {% if variant.compare_at_price > variant.price %}
+                        <del class="compare_at_price">{{ variant.compare_at_price | money_with_dp | money_without_dp_zero }}</del>
+                      {% endif %}
+                    </div>
+                    <div class="product_love">
+                      <input type="hidden" class="product-variant-id" value="{{ product.variants[0].id }}">
+                      <a class="btn_love scupio-add-wishlist"
+                         data-itemid="{{ product.variants[0].sku }}"
+                         data-cid="{{ collection.id }}"
+                         data-cname="{{ collection.class_name}}">
+                        <i class="fas fa-heart"></i>加入最愛
+                      </a>
+                    </div>
+                    <div class="product_btn">
+                      <div class="product_link">
+                        <a class="btn productClick" href="{{ product.url }}"
+                          data-brand="{{ product.vendor | escape }}"
+                          data-category="{{ product.product_type | escape }}"
+                          data-id="{{ product.id }}"
+                          data-list="{{ collection.title | escape }}"
+                          data-name="{{ product.title | escape }}"
+                          data-position="{{ forloop.index }}"
+                          data-price="{{ product.price }}">
+                          <i class="fas fa-search"></i>
+                          <span class="text">查看商品</span>
+                        </a>
+                      </div>
+                      {% if shop.cart_enabled %}
+                        {% if product.variants.size > 0 %}
+                          <button type="button" class="btn btn-cart" data-toggle="modal" data-target="#addcart-Modal"
+                            data-brand="{{ product.vendor | escape }}"
+                            data-category="{{ product.product_type | escape }}"
+                            data-handle="{{ product.handle }}"
+                            data-collection="{{ product.collections[0].id }}"
+                            data-id="{{ product.id }}"
+                            data-list="{{ collection.title | escape }}"
+                            data-name="{{ product.title | escape }}"
+                            data-photo="{{ product.featured_image | product_img_url: 'grande' }}"
+                            data-position="{{ forloop.index }}"
+                            data-price="{{ product.price }}"
+                            data-spread-size="{{ product.variants_info }}"
+                            data-cid="{{ collection.id }}"
+                            data-cname="{{ collection.class_name }}"
+                            data-sku="{{ product.variants[0].sku }}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="text">加入購物車</span>
+                          </button>
+                        {% else %}
+                          <button type="button" class="btn btn-soldout">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="text">商品已售完</span>
+                          </button>
+                        {% endif %}
+                      {% endif %}
+                    </div>
+                  {% endproduct_tag %}
+                {% endfor %}
+              </div>
+              {% include 'pagination' %}
+            {% endpaginate %}
+          {% endif %}
+        </div>
+        <!-- 群組商品 end -->
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{{ gtm.load_product_impression }}
+
+{{ 'css/beta_theme/collection.css' | asset_url | stylesheet_tag }}
+
+{% if collection.class_name != "SpecialCollection" %}
+  {% include 'new_addcart_modal' %}
+  <script>
+    $(document).ready(function(){
+      // pop modal
+      $('#collection .btn-cart').click(function() {
+        var productHandle = '/products/' + $(this).data('handle');
+        var collectionId = $(this).data('collection');
+        var color = $(this).data('color');
+        var isCollection = true;
+        new_addcart_modal.popModal(productHandle, collectionId, color, isCollection);
+      });
+    });
+  </script>
+{% endif %}
+
+<script>
+  $(document).ready(function(){
+
+    // 變更商品樣式
+    $("#collection .product_layout button").click(function(e){
+      $(".collection_products").removeClass("line_prods").removeClass("square_prods").addClass($(this).val())
+      Cookies.set('product_layout',$(this).val(), { expires: 1 })
+    })
+
+    // 依照cookie顯示商品樣式
+    if (Cookies.get('product_layout') == 'line_prods') {
+      $(".collection_products").removeClass("square_prods").addClass("line_prods")
+    }else if(Cookies.get('product_layout') == 'square_prods'){
+      $(".collection_products").removeClass("line_prods").addClass("square_prods")
+    }
+
+  })
+</script>
+
+{% if collection.class_name != "SpecialCollection" %}
+  <script>
+    $(document).ready(function(){
+      setPriceWithDiscount();
+    })
+  </script>
+{% endif %}

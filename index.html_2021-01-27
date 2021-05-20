@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沐禾 AromaHarvest</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/aromaharvest_main.css">
+</head>
+<body id="index">
+    <!-- 品牌故事 -->
+    <section class="story_block">
+        <img class="oil_1" src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/bg_plant-1.jpg?2020" alt="bg_plant">
+        <img class="oil_2" src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/bg_plant-2.jpg?2020" alt="bg_plant">
+        <div class="container">
+            <h2>頂級品質的決心</h2>
+            <div class="story_box">
+                <p>AromaHarvest 沐禾全系列有機產品皆來自歐盟、法國、美國及澳洲最高有機認證機構認證，<br>
+                    同時我們為產品設計完整的履歷證明標示，提供專業人士準確判斷精油品質與特性；<br>
+                    AromaHarvest 沐禾所有產品皆以 25 度恆溫倉儲中心全年悉心保存，<br>
+                    我們以最高標準給予您最高品質的芳療產品，期待您在這裡體驗美好的芳療旅程。
+                </p>
+                <a href="/pages/aromaharvest" class="btn_more dark">了解我們的決心 ></a>
+            </div>
+        </div>
+    </section>
+    <!-- 今天我想來點 -->
+    <section class="make_your_day_block">
+        <div class="container">
+            <div class="title_block">
+                <h2>make your day</h2>
+                <span>今天，我想來點...</span>
+            </div>
+            <div class="your_day_block">
+                <a class="your_day_box" href="https://www.aromaharvest.com/collections/security" title="安全感">
+                    <div class="circle"></div>
+                    <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/day_1.svg" alt="安全感">
+                </a>
+                <a class="your_day_box" href="https://www.aromaharvest.com/collections/happiness" title="幸福感">
+                    <div class="circle"></div>
+                    <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/day_2.svg" alt="幸福感">
+                </a>
+                <a class="your_day_box" href="https://www.aromaharvest.com/collections/confidence" title="自信感">
+                    <div class="circle"></div>
+                    <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/day_3.svg" alt="自信感">
+                </a>
+                <a class="your_day_box" href="https://www.aromaharvest.com/collections/calm" title="踏實感">
+                    <div class="circle"></div>
+                    <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/day_4.svg" alt="踏實感">
+                </a>
+                <a class="your_day_box" href="https://www.aromaharvest.com/collections/comfort" title="療癒感">
+                    <div class="circle"></div>
+                    <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/day_5.svg" alt="療癒感">
+                </a>
+                <a class="your_day_box" href="https://www.aromaharvest.com/collections/energy" title="活力感">
+                    <div class="circle"></div>
+                    <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/day_6.svg" alt="活力感">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- 產品簡介 -->
+    <section class="product_intro_block">
+        <!-- 單方精油 -->
+        <div class="product_intro_box">
+            <figure class="pd_bg">
+                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/intro_1_b.jpg" alt="單方精油">
+            </figure>
+            <div class="pd_block">
+                <div class="pd_title">
+                    <div class="num">01</div>
+                    <h3 class="type">單方精油</h3>
+                    <div class="type_en">ESSENTIAL OILS</div>
+                </div>
+                <div class="pd_sub_title">
+                    源自精油代表產地<br>
+                    蘊藏大地賦予的獨特療癒力
+                </div>
+                <div class="pd_description">
+                    味道像一把鑰匙<br>
+                    總能打開記憶深處的抽屜<br>
+                    來自植物原產地的單方精油<br>
+                    確保萃取精油不因環境改變而受到影響<br>
+                    邀請你一起來尋找<br>
+                    源自於精油故鄉的美好連結
+                </div>
+                <div class="top_3">
+                    <span>人氣精選 TOP 3</span>
+                    <div class="pd_top_block">
+                        <a class="pd_top_box" href="/products/essential_oil_lavender_true" title="純正薰衣草精油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_1-1.jpg?20201214" alt="單方精油">
+                            </figure>
+                            <h5>純正薰衣草精油<span>Lavender True</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/essential_oil_orange_sweet" title="甜橙精油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_1-2.jpg" alt="單方精油">
+                            </figure>
+                            <h5>甜橙精油<span>Orange Sweet</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/essential_oil_cedarwood_atlas" title="大西洋雪松精油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_1-3.jpg?20201214" alt="單方精油">
+                            </figure>
+                            <h5>大西洋雪松精油<span>Cedarwood Atlas</span></h5>
+                        </a>
+                    </div>
+                    <a href="/collections/shopall_essential_oils" class="btn_more light">更多單方精油 ></a>
+                </div>
+            </div>
+        </div>
+        <!-- 複方精油 -->
+        <div class="product_intro_box">
+            <figure class="pd_bg">
+                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/intro_2_bn.jpg?20210108" alt="複方精油">
+            </figure>
+            <div class="pd_block">
+                <div class="pd_title">
+                    <div class="num">02</div>
+                    <h3 class="type">複方精油</h3>
+                    <div class="type_en">ESSENTIAL OIL BLENDS</div>
+                </div>
+                <div class="pd_sub_title">
+                    精選單方與最佳比例的交織<br>
+                    讓1+1也可以成為無限大
+                </div>
+                <div class="pd_description">
+                    在逐漸深入精油相關的知識後<br>
+                    會發現調配複方精油是一門高深的藝術<br>
+                    藉由精油之間的特性，增進原本單方精油的效用<br>
+                    在千萬種組合裡，你都怎麼挑出最喜歡的配方？<br>
+                    這次停下腦中的思緒毛球<br>
+                    讓身體引領你前往尋找答案吧！
+                </div>
+                <div class="top_3">
+                    <span>人氣精選 TOP 3</span>
+                    <div class="pd_top_block">
+                        <a class="pd_top_box" href="/products/blend_skincare" title="國色皮膚系統複方純精油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_2-1n.jpg?202101081" alt="複方精油">
+                            </figure>
+                            <h5>國色皮膚系統<span>複方純精油</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/blend_relax" title="釋放肌肉系統複方純精油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_2-2n.jpg" alt="複方精油">
+                            </figure>
+                            <h5>釋放肌肉系統<span>複方純精油</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/blend_lymph" title="輕盈淋巴系統複方純精油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_2-3n.jpg" alt="複方精油">
+                            </figure>
+                            <h5>輕盈淋巴系統<span>複方純精油</span></h5>
+                        </a>
+                    </div>
+                    <a href="/collections/shopall_blends" class="btn_more light">更多複方精油 ></a>
+                </div>
+            </div>
+        </div>
+        <!-- 有機純露 -->
+        <div class="product_intro_box">
+            <figure class="pd_bg">
+                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/intro_3_b.jpg" alt="有機純露">
+            </figure>
+            <div class="pd_block">
+                <div class="pd_title">
+                    <div class="num">03</div>
+                    <h3 class="type">有機純露</h3>
+                    <div class="type_en">ORGANIC HYDROSOLS</div>
+                </div>
+                <div class="pd_sub_title">
+                    蒸餾精油後的有機溶液<br>
+                    給予最完整的植物療癒特質
+                </div>
+                <div class="pd_description">
+                    在精深的芳香療法之中<br>
+                    含有微量精油成分的純露也是很棒的選擇<br>
+                    溫和的特性有更為多元的使用方法<br>
+                    更是寵愛肌膚的最佳伙伴<br>
+                    在疲憊一天之後，只想窩在角落的時刻<br>
+                    讓純露靜靜陪伴，潤澤你的身心
+                </div>
+                <div class="top_3">
+                    <span>人氣精選 TOP 3</span>
+                    <div class="pd_top_block">
+                        <a class="pd_top_box" href="/products/hydrosols_rose_bulgaria" title="玫瑰純露">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_3-1.jpg" alt="有機純露">
+                            </figure>
+                            <h5>玫瑰純露<span>Rose (Bulgaria)</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/hydrosols_helichrysum" title="義大利永久花純露">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_3-2.jpg" alt="有機純露">
+                            </figure>
+                            <h5>義大利永久花純露<span>helichrysum</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/hydrosols_clary_sage" title="快樂鼠尾草純露">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_3-3.jpg" alt="有機純露">
+                            </figure>
+                            <h5>快樂鼠尾草純露<span>Clary Sage</span></h5>
+                        </a>
+                    </div>
+                    <a href="/collections/shopall_hydrosols" class="btn_more light">更多有機純露 ></a>
+                </div>
+            </div>
+        </div>
+        <!-- 基底油 -->
+        <div class="product_intro_box">
+            <figure class="pd_bg">
+                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/intro_4_b.jpg" alt="基底油">
+            </figure>
+            <div class="pd_block">
+                <div class="pd_title">
+                    <div class="num">04</div>
+                    <h3 class="type">基底油</h3>
+                    <div class="type_en">CARRIER OILS</div>
+                </div>
+                <div class="pd_sub_title">
+                    第一道冷壓萃取的天然油脂<br>
+                    引領精油進入身體循環的關鍵
+                </div>
+                <div class="pd_description">
+                    化妝桌上的保養品來來去去<br>
+                    有時候需要的不多，想要的卻太多<br>
+                    基底油本身具備豐富的營養素<br>
+                    搭配精油能提高皮膚對精油的吸收度<br>
+                    今天試著回歸簡單<br>
+                    讓質地溫柔又細膩的基底油呵護著你
+                </div>
+                <div class="top_3">
+                    <span>人氣精選 TOP 3</span>
+                    <div class="pd_top_block">
+                        <a class="pd_top_box" href="/products/carry_oil_calendula" title="金盞花油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_4-1.jpg" alt="基底油">
+                            </figure>
+                            <h5>金盞花油<span>Calendula</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/carry_oil_jojoba" title="荷荷芭油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_4-2.jpg" alt="基底油">
+                            </figure>
+                            <h5>荷荷芭油<span>Jojoba</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/carry_oil_apricot_kernel" title="杏桃核仁油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_4-3.jpg" alt="基底油">
+                            </figure>
+                            <h5>杏桃核仁油<span>Apricot Kernel</span></h5>
+                        </a>
+                    </div>
+                    <a href="/collections/shopall_carrier_oils" class="btn_more light">更多基底油 ></a>
+                </div>
+            </div>
+        </div>
+        <!-- 滾珠按摩油 -->
+        <div class="product_intro_box">
+            <figure class="pd_bg">
+                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/intro_5_bn.jpg" alt="滾珠按摩油">
+            </figure>
+            <div class="pd_block">
+                <div class="pd_title">
+                    <div class="num">05</div>
+                    <h3 class="type">滾珠按摩油</h3>
+                    <div class="type_en">MASSAGE OILS</div>
+                </div>
+                <div class="pd_sub_title">
+                    小小滾珠瓶裝進屬於你的香氣<br>
+                    隨時隨地感受芳療的美好
+                </div>
+                <div class="pd_description">
+                    有時候我們太想盡心盡力<br>
+                    演繹好生活每一幕場景的角色<br>
+                    偶爾也要喘口氣<br>
+                    打開滾珠按摩油，讓它成為你的療癒小伙伴<br>
+                    來場小而美的SPA安撫一下吧！                    
+                </div>
+                <div class="top_3">
+                    <span>人氣精選 TOP 3</span>
+                    <div class="pd_top_block">
+                        <a class="pd_top_box" href="/products/massage_oil_nervous_system" title="沉靜神經系統滾珠按摩油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_5-1n.jpg" alt="滾珠按摩油(3%神經滾珠按摩油)">
+                            </figure>
+                            <h5>沉靜神經系統<span>滾珠按摩油</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/massage_oil_immune_system" title="森林呼吸系統滾珠按摩油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_5-2n.jpg" alt="滾珠按摩油(3%滾珠按摩油)">
+                            </figure>
+                            <h5>森林呼吸系統<span>滾珠按摩油</span></h5>
+                        </a>
+                        <a class="pd_top_box" href="/products/massage_oil_relax" title="釋放肌肉系統滾珠按摩油">
+                            <figure>
+                                <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/pd_5-3n.jpg" alt="滾珠按摩油(3%肌肉滾珠按摩油)">
+                            </figure>
+                            <h5>釋放肌肉系統<span>滾珠按摩油</span></h5>
+                        </a>
+                    </div>
+                    <a href="/collections/shopall_massage_oils" class="btn_more light">更多滾珠按摩油 ></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 精選文章 -->
+    <section class="editor_picks_block">
+        <div class="container">
+            <div class="title_block">
+                <h2>精選文章</h2>
+                <span>[ Editor's Picks ]</span>
+            </div>
+            <div class="article_block">
+                <a class="article_box" href="/blogs/配方靈感/59037" title="寵愛最好的自己，暖心3複方擁抱妳的心">
+                    <figure>
+                        <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/article-1.jpg" alt="寵愛最好的自己，暖心3複方擁抱妳的心">
+                    </figure>
+                    <div class="article_content">
+                        <div class="article_deco">
+                            <div class="deco_date">November 29, 2019</div>
+                            <div class="deco_type">[ 配方靈感 ]</div>
+                        </div>
+                        <div class="article_title">寵愛最好的自己，暖心3複方擁抱妳的心</div>
+                        <p>阿米老師身邊有好多超級媽媽，一人分飾多角，不但是人妻、人母、人媳也是爸媽的好女兒，不管在職場，還是家裡，總是容易替別人操心，
+                        總是在各種角色與自我認同之間，找到理想的平衡，等到稍微能喘口氣時，才發現這裡酸那裡痛，
+                        看得阿米老師好心疼(抱~)</p>
+                    </div>
+                </a>
+                <a class="article_box" href="/blogs/沐禾精選/59691" title="2020沐禾AromaHarvest年度暢銷排行榜！芳迷們真心誠意心頭好‧愛妳愛妳人手一瓶">
+                    <figure>
+                        <img src="https://cdn.cybassets.com/s/files/8869/theme/53985/assets/article-2-20201221.jpg" alt="2020沐禾AromaHarvest年度暢銷排行榜！芳迷們真心誠意心頭好‧愛妳愛妳人手一瓶">
+                    </figure>
+                    <div class="article_content">
+                        <div class="article_deco">
+                            <div class="deco_date">December 18, 2020</div>
+                            <div class="deco_type">[ 沐禾精選 ]</div>
+                        </div>
+                        <div class="article_title">2020沐禾AromaHarvest年度暢銷排行榜！芳迷們真心誠意心頭好‧愛妳愛妳人手一瓶</div>
+                        <p>首先感謝各位熱情支持沐禾的產品(一鞠躬)，因為疫情的關係2020年對大家來說都是守護健康的一年，愈來愈多人選擇用更天然的方式照顧自己和家人，</p>
+                    </div>
+                </a>
+                <a class="article_box" href="/blogs/一週一精油/59034" title="羅馬洋甘菊">
+                    <figure>
+                        <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/article-3.jpg" alt="羅馬洋甘菊">
+                    </figure>
+                    <div class="article_content">
+                        <div class="article_deco">
+                            <div class="deco_date">December 07, 2020</div>
+                            <div class="deco_type">[ 一週一精油 ]</div>
+                        </div>
+                        <div class="article_title">羅馬洋甘菊</div>
+                        <p>今天在等紅燈的時候聽到一段母子的對話，「哈啾！哈啾！」冷颼颼的早晨小男孩打了2下重重的噴涕，馬上轉頭和媽媽說：「媽媽我打噴涕了，我要聞精油！」然後媽媽拿出滾珠瓶在小男孩的鼻下塗了幾下，小男孩就開開心心的牽著媽媽的手過馬路了。</p>
+                    </div>
+                </a>
+                <a class="article_box" href="/blogs/閱讀芳香-20201127162804/21139" title="春季潮濕昏昏欲睡，用澳洲尤加利先喚醒寢具">
+                    <figure>
+                        <img src="https://cdn.cybassets.com/s/files/8869/theme/53204/assets/article-4.jpg" alt="春季潮濕昏昏欲睡，用澳洲尤加利先喚醒寢具">
+                    </figure>
+                    <div class="article_content">
+                        <div class="article_deco">
+                            <div class="deco_date">September 19, 2018</div>
+                            <div class="deco_type">[ 閱讀芳香 ]</div>
+                        </div>
+                        <div class="article_title">春季潮濕昏昏欲睡，用澳洲尤加利先喚醒寢具</div>
+                        <p>最近大家的鼻子都還好嗎？艾莉絲因為春天容易潮濕的關係，已經打了數以百計的噴嚏了！而且還因為過敏，每天精神都不是很好，一直處在昏昏欲睡的狀態中。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="btn_block">
+                <a href="/blogs" class="btn_more light">更多精選文章 ></a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

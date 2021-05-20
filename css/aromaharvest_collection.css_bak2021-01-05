@@ -1,0 +1,10 @@
+#collection .collection_products .products_content .product_price .price{
+    color: #e55555 !important;
+}
+
+@media screen and (max-width: 567px){
+    #collection .collection_products.square_prods .product .product_title{
+        height: 72px !important;
+        line-height: 1.4;
+    }
+}

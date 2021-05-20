@@ -1,0 +1,78 @@
+{% include 'breadcrumb', url: "account/account_edit", account_session: "更新個人資料" %}
+
+<div id="account">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        {% include '_account_menu', session: "account_edit" %}
+      </div>
+      <div class="col-lg-9">
+        <form method="post" action="/account/edit" id="account_edit_form" class="account_table">
+          {% if alert %}
+            <div class="alert alert-danger w-100">{{ alert }}</div>
+          {% endif %}
+          {% csrf_input %}
+          <div class="form-group">
+            <label for="customerName">姓名</label>
+            <input type="text" id="customerName" class="form-control" placeholder="請輸入帳戶姓名" name="name" value="{{ customer.name }}">
+          </div>
+          {% if shop.mobile_validating? %}
+            {% include '_account_mobile_validation_on_edit' %}
+          {% else %}
+            <div class="form-group">
+              <label for="customerMobile">手機</label>
+              <input type="tel" required pattern="^(09[0-9]{8}|\+(?:[0-9]){6,14}[0-9])$" id="customerMobile" class="form-control" placeholder="請輸入手機號碼" name="mobile" value="{{ customer.mobile }}">
+            </div>
+          {% endif %}
+          <div class="form-group">
+            <label for="customerEmail">電子郵件</label>
+            <input type="email" id="customerEmail" class="form-control" placeholder="Example@gmail.com" name="email" value="{{ customer.email }}">
+          </div>
+          <div class="form-group">
+            <label for="customerBirthday">出生日期</label>
+            {% if customer.birthday %}
+              <p>{{ customer.birthday }}</p>
+            {% else %}
+              <input id="customerBirthday" class="form-control datepicker" placeholder="請輸入生日" name="account[birthday]" value="{{ customer.birthday }}">
+            {% endif %}
+          </div>
+
+          <div class="form-group customer_gender">
+            <label>性別</label><br>
+            <input type="radio" id="gender_male" name="account[gender]" value="男" {%if customer.gender == "男"%} checked {% endif %}>
+            <label class="radio_label" for="gender_male"></label><span class="text">男</span>
+            <input type="radio" id="gender_female" name="account[gender]" value="女" {%if customer.gender == "女"%} checked {% endif %}>
+            <label class="radio_label" for="gender_female"></label><span class="text">女</span>
+          </div>
+          <div class="form-group customer_marketing">
+            <label>電子報</label>
+            <span>訂閱商品/活動訊息，我們將不定期透過email通知最新商品活動及優惠訊息。</span><br>
+            <input type="radio" id="marketing_true" name="account[accepts_marketing]" value="true" {%if customer.accepts_marketing %} checked {% endif %}>
+            <label class="radio_label" for="marketing_true"></label><span class="text">訂閱</span>
+            <input type="radio" id="marketing_false" name="account[accepts_marketing]" value="no" {%if customer.accepts_marketing == false %} checked {% endif %}>
+            <label class="radio_label" for="marketing_false"></label><span class="text">不訂閱</span>
+          </div>
+          <div class="form_btns form-row">
+            <div class="form_btn">
+              <a href="javascript:void(0)" class="btn reset_form">重新填寫</a>
+            </div>
+            <div class="form_btn">
+              <button type="submit" class="btn active">確定修改</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ 'css/beta_theme/account.css' | asset_url | stylesheet_tag }}
+
+<script>
+  $(document).ready(function() {
+    $('#account_edit_form').submit(function() {
+      store.remove('customer')
+      return true;
+    });
+  })
+</script>
